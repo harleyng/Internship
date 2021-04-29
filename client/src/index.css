@@ -1,0 +1,15 @@
+body {
+  background-color: rgba(135, 135, 146, .2);
+}
+.icon100 {
+  color: rgba(238, 238, 238, 0.7) !important; /* lightGray */
+}
+.icon200 {
+  color: rgb(100, 100, 100) !important; /* Gray */
+}
+.MuiButton-root:not(.noColorButton) {
+  background-color: rgb(71, 130, 218) !important;
+}
+.Mui-checked {
+  color: rgb(71, 130, 218) !important;
+}

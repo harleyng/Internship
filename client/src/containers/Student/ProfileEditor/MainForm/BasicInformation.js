@@ -1,0 +1,68 @@
+import React from 'react'
+import { Paper, Grid, Typography, FormControl, MenuItem, InputLabel, Select } from '@material-ui/core'
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import useStyles from './styles'
+import LuxonUtils from '@date-io/luxon';
+
+import { first } from '../../../../constants/profileSection'
+import Input from './Input'
+
+const BasicInformation = ({ handleChange, handleDateChange, DOB }) => {
+  const classes = useStyles();
+
+  return (
+    <Paper className={classes.ProfileSectionContainer}>
+      <Typography className={classes.ProfileSectionTitle} variant="h6">{first}</Typography>
+      <Grid container spacing={3} justify='space-around'>
+        {/* Line Break */}
+        <Input name="name" label="Full Name" handleChange={handleChange} width={5} type="text" />
+
+        <Input name="phone" label="Phone Number" handleChange={handleChange} width={3} type="text" />
+        
+        <Grid item sm={12} md={4}>
+          <MuiPickersUtilsProvider utils={LuxonUtils} >
+            <KeyboardDatePicker className={classes.formControl}
+              disableToolbar
+              variant="inline"
+              format="dd/MM/yyyy"
+              margin="normal"
+              label="Date of Birth"
+              value={DOB}
+              onChange={(date) => handleDateChange(date, "DOB")} 
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+          </MuiPickersUtilsProvider>
+        </Grid>
+      
+        {/* Line Break */}
+
+        <Input name="studentID" label="Student ID" handleChange={handleChange} width={2} type="text" />
+
+        <Input name="academicYear" label="Academic Year" handleChange={handleChange} width={3} type="text" />
+
+        <Grid item sm={12} md={7}>
+          <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel>Deparment</InputLabel>
+            <Select
+              name="department"
+              onChange={handleChange}
+              label="Deparment"
+            >
+              <MenuItem value="PMAB">Pharmacological, Medical and Agronomical Biotechnology</MenuItem>
+              <MenuItem value="ICT">Information Technology and Communication</MenuItem>
+              <MenuItem value="MST">Medical Science and Technology</MenuItem>
+              <MenuItem value="CS">Cyber security</MenuItem>
+              <MenuItem value="AE">Aeronautical Maintenance and Engineering Operations</MenuItem>
+              <MenuItem value="FST">Food Science and Technology</MenuItem>
+              <MenuItem value=""><em>None</em></MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+    </Paper>
+  )
+}
+
+export default BasicInformation
