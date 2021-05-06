@@ -29,5 +29,14 @@ export default makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: primaryDarker
     }
+  },
+  NormalNavText: {
+    color: white,
+    textDecoration: 'none',
+  },
+  ListItemContainer: {
+    justifyContent: 'center',
+    display: 'flex',
+    alignItems: 'center',
   }
 }));

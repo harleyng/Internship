@@ -18,5 +18,12 @@ export default makeStyles((theme) => ({
   },
   AuthSubmitButton: {
     marginTop: theme.spacing(3),
+  },
+  RoleRadioGroup: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  RoleContainer: {
+    width: '100%'
   }
 }));

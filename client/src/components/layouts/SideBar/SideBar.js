@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { List, ListItem, ListItemIcon, ListItemText, Divider, Hidden, Drawer, Typography } from '@material-ui/core'
-import { Mail, MenuIcon, Inbox } from '@material-ui/icons'
+import { Person, RateReview } from '@material-ui/icons'
 import useStyles from './styles'
 import { useTheme } from '@material-ui/core/styles';
+import { useHistory, useLocation, Link } from 'react-router-dom'
 
 import logo from '../../../img/logo-blue.png';
 import { toggle } from '../../../actions/drawer'
@@ -11,36 +12,65 @@ import { toggle } from '../../../actions/drawer'
 const SideBar = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
   const mobileOpen = useSelector(state => state.drawerToggler);
+  const profile = useSelector(state => state.studentProfile);
+  const user = JSON.parse(localStorage.getItem('profile'));
+
+  useEffect(() => {
+    
+  }, [location, profile])
 
   const handleDrawerToggle = () => {
     dispatch(toggle(false));
   }
 
+  const accessProfile = () => {
+    if (profile) {
+      return (`/student/${profile?.studentID}`)
+    }
+  }
+
+  const SideBarItemList = [
+    {
+      text: 'Your Profile',
+      icon: <Person />,
+      path: (() => accessProfile()),
+      permisson: user?.result?.role === 'student'
+    },
+    {
+      text: 'Review topic',
+      icon: <RateReview />,
+      path: '/students/topic',
+      permisson: user?.result?.role === 'lecturer'
+    },
+  ]
+  // console.log(user)
   const drawer = (
     <div>
-      <div className={classes.brandContainer} >
+      <Link to={'/'} className={`${classes.brandContainer} ${classes.NormalNavText}`} >
         <img src={logo} alt="logo" height="30" />
         <Typography className={classes.brandName}>INTESYS</Typography>
-      </div>
+      </Link>
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem className={classes.sideBarItem} button key={text}>
-            <ListItemIcon className='icon100'>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem className={classes.sideBarItem} button key={text}>
-            <ListItemIcon className='icon100'>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {SideBarItemList.map((item, index) => {
+          const { text, icon, permisson, path } = item
+          return (
+            <>
+            { permisson && (
+              <Link to={path} className={`${classes.ListItemContainer} ${classes.NormalNavText}`}>
+                <ListItem className={classes.sideBarItem} button key={text}>
+                    {icon && <ListItemIcon className='icon100'>{icon}</ListItemIcon>}
+                    <ListItemText primary={text} />
+                </ListItem>
+              </Link>
+            )}
+            </>
+          )
+        })}
       </List>
     </div>
   );

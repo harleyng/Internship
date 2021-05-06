@@ -9,6 +9,7 @@ body {
 }
 .MuiButton-root:not(.noColorButton) {
   background-color: rgb(71, 130, 218) !important;
+  color: #fff;
 }
 .Mui-checked {
   color: rgb(71, 130, 218) !important;

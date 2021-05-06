@@ -6,6 +6,8 @@ import decode from 'jwt-decode';
 import { IconButton, Menu, MenuItem, Typography, Button, Divider } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
 import useStyles from './styles'
+import { getProfile } from '../../../../actions/student'
+
 
 const User = () => {
   const classes = useStyles();
@@ -17,15 +19,18 @@ const User = () => {
 
   useEffect(() => {
     const token = user?.token;
-
     if (token) {
       const decodedToken = decode(token);
-
       if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
     
-    setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [location])
+    setUser(JSON.parse(localStorage.getItem('profile')))
+    handleClose();
+  }, [location, dispatch])
+
+  useEffect(() => {
+    dispatch(getProfile({userID: user?.result._id}));
+  }, [user])
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' })
@@ -72,7 +77,6 @@ const User = () => {
           >
             <Typography className={classes.userName}>Signed in as {user.result.email}</Typography>
             <Divider />
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={logout}>Logout</MenuItem>
           </Menu>
         </div>

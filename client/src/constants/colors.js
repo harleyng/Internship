@@ -4,3 +4,6 @@ export const primaryDarker = 'rgb(30, 42, 56)';
 export const white = '#eeeeee';
 export const lightGray = 'rgba(238, 238, 238, 0.7)';
 export const gray = 'rgb(158, 158, 158)';
+export const yellow = '#ffc107';
+export const red = '#f44336';
+export const green = '#4caf50'

@@ -7,28 +7,29 @@ import LuxonUtils from '@date-io/luxon';
 import Input from './Input'
 import { fourth } from '../../../../constants/profileSection'
 
-const Internship = ({ handleChange, handleDateChange, startTime, endTime }) => {
+const Internship = ({ handleChange, handleDateChange, handleClick, formData }) => {
   const classes = useStyles();
   return (
-    <Paper className={classes.ProfileSectionContainer}>
+    <Paper className={classes.ProfileSectionContainer} onClick={(e) => handleClick(e, 4)}>
       <Typography className={classes.ProfileSectionTitle} variant="h6">{fourth}</Typography>
       <Grid container spacing={3} justify='space-around'>
         {/* Line Break */}
-        <Input name="internshipLocation" label="Location" handleChange={handleChange} width={6} type="text" />
+        <Input name="internship_location" value={formData?.internship?.location} label="Location" handleChange={handleChange} width={6} type="text" />
 
-        <Input name="internshipHost" label="Host" handleChange={handleChange} width={6} type="text" />
+        <Input name="internship_host" value={formData?.internship?.host} label="Host" handleChange={handleChange} width={6} type="text" />
         
         {/* Line Break */}
         <Grid item sm={12} md={6}>
           <MuiPickersUtilsProvider utils={LuxonUtils} >
             <KeyboardDatePicker className={classes.formControl}
+              
               disableToolbar
               variant="inline"
               format="dd/MM/yyyy"
               margin="normal"
               label="Start Time"
-              value={startTime}
-              onChange={(date) => handleDateChange(date, "startTime")} 
+              value={formData?.internship?.startTime}
+              onChange={(date) => handleDateChange(date, "internship_startTime")} 
               KeyboardButtonProps={{
                 'aria-label': 'change date',
               }}
@@ -39,13 +40,14 @@ const Internship = ({ handleChange, handleDateChange, startTime, endTime }) => {
         <Grid item sm={12} md={6}>
           <MuiPickersUtilsProvider utils={LuxonUtils} >
             <KeyboardDatePicker className={classes.formControl}
+              
               disableToolbar
               variant="inline"
               format="dd/MM/yyyy"
               margin="normal"
               label="End Time"
-              value={endTime}
-              onChange={(date) => handleDateChange(date, "endTime")} 
+              value={formData?.internship?.endTime}
+              onChange={(date) => handleDateChange(date, "internship_endTime")} 
               KeyboardButtonProps={{
                 'aria-label': 'change date',
               }}
@@ -56,7 +58,10 @@ const Internship = ({ handleChange, handleDateChange, startTime, endTime }) => {
         {/* Line Break */}
         <Grid item sm={12}>
           <TextField
+            
             className={classes.textArea}
+            name="internship_objective"
+            value={formData?.internship?.objective}
             label="Objective"
             multiline
             onChange={handleChange}
@@ -67,7 +72,10 @@ const Internship = ({ handleChange, handleDateChange, startTime, endTime }) => {
         {/* Line Break */}
         <Grid item sm={12}>
           <TextField
+            
             className={classes.textArea}
+            name="internship_outcome"
+            value={formData?.internship?.outcome}
             label="Outcome"
             multiline
             onChange={handleChange}

@@ -7,27 +7,28 @@ import LuxonUtils from '@date-io/luxon';
 import { first } from '../../../../constants/profileSection'
 import Input from './Input'
 
-const BasicInformation = ({ handleChange, handleDateChange, DOB }) => {
+const BasicInformation = ({ handleChange, handleDateChange, handleClick, formData }) => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.ProfileSectionContainer}>
+    <Paper className={classes.ProfileSectionContainer} onClick={(e) => handleClick(e, 1)}>
       <Typography className={classes.ProfileSectionTitle} variant="h6">{first}</Typography>
       <Grid container spacing={3} justify='space-around'>
         {/* Line Break */}
-        <Input name="name" label="Full Name" handleChange={handleChange} width={5} type="text" />
+        <Input name="fullName" value={formData?.fullName} label="Full Name" handleChange={handleChange} width={5} type="text" />
 
-        <Input name="phone" label="Phone Number" handleChange={handleChange} width={3} type="text" />
+        <Input name="phoneNo" value={formData?.phoneNo} label="Phone Number" handleChange={handleChange} width={3} type="text" />
         
         <Grid item sm={12} md={4}>
           <MuiPickersUtilsProvider utils={LuxonUtils} >
             <KeyboardDatePicker className={classes.formControl}
+              
               disableToolbar
               variant="inline"
               format="dd/MM/yyyy"
               margin="normal"
               label="Date of Birth"
-              value={DOB}
+              value={formData?.DOB}
               onChange={(date) => handleDateChange(date, "DOB")} 
               KeyboardButtonProps={{
                 'aria-label': 'change date',
@@ -38,17 +39,19 @@ const BasicInformation = ({ handleChange, handleDateChange, DOB }) => {
       
         {/* Line Break */}
 
-        <Input name="studentID" label="Student ID" handleChange={handleChange} width={2} type="text" />
+        <Input name="studentID" value={formData?.studentID} label="Student ID" handleChange={handleChange} width={2} type="text" required />
 
-        <Input name="academicYear" label="Academic Year" handleChange={handleChange} width={3} type="text" />
+        <Input name="academicYear"  value={formData?.academicYear} label="Academic Year" handleChange={handleChange} width={3} type="text" />
 
         <Grid item sm={12} md={7}>
           <FormControl variant="outlined" className={classes.formControl}>
             <InputLabel>Deparment</InputLabel>
             <Select
               name="department"
+              value={formData?.department} 
               onChange={handleChange}
               label="Deparment"
+              
             >
               <MenuItem value="PMAB">Pharmacological, Medical and Agronomical Biotechnology</MenuItem>
               <MenuItem value="ICT">Information Technology and Communication</MenuItem>
