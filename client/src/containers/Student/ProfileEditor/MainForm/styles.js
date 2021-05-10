@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { yellow, red, green } from '../../../../constants/colors'
 
 export default makeStyles((theme) => ({
   ProfileSectionContainer: {
@@ -21,5 +22,23 @@ export default makeStyles((theme) => ({
   },
   textArea: {
     width: '100%',
-  }
+  },
+  status: {
+    padding: '5px 15px',
+    border: '2px solid',
+    borderRadius: '20px',
+    textAlign: 'center',
+  },
+  pendingStatus: {
+    color: yellow,
+    borderColor: yellow,
+  },
+  approvedStatus: {
+    color: green,
+    borderColor: green,
+  }, 
+  refusedStatus: {
+    color: red,
+    borderColor: red,
+  },
 }));

@@ -11,6 +11,7 @@ const Input = ({ name, value, handleChange, label, width, type, required, disabl
         disabled={disabled}
         name={name}
         value={value}
+        InputLabelProps={{ shrink: true }}
         onChange={handleChange} 
         variant="outlined"
         fullWidth

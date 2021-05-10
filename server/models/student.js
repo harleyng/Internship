@@ -31,14 +31,17 @@ const studentSchema = mongoose.Schema({
     PITCode: String,
   },
   internship: {
-    topic      : String,
-    topicStatus: String,
-    location   : String,
-    host       : String,
-    startTime  : Date,
-    endTime    : Date,
-    objective  : String,
-    outcome    : String,
+    topic       : String,
+    topicStatus : String,
+    reviewPerson: String,
+    updatedAt   : Date,
+    location    : String,
+    host        : String,
+    startTime   : Date,
+    endTime     : Date,
+    description : String,
+    objective   : String,
+    outcome     : String,
   }
 });
 

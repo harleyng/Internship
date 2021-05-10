@@ -6,7 +6,8 @@ import Auth from './components/Auth/Auth'
 import Home from './containers/Home'
 import ProfileEditor from './components/Student/profile/ProfileEditor'
 import NewStudent from './components/Student/new/NewStudent'
-import TopicReview from './components/TopicReview'
+import TopicReview from './components/Lecturer/TopicReview'
+import StudentList from './components/Staff/StudentList'
 
 const App = () => {
   return (
@@ -22,6 +23,9 @@ const App = () => {
 
           {/* Lecturer */}
           <Route exact path="/students/topic" component={TopicReview} />
+
+          {/* Staff */}
+          <Route exact path="/students/" component={StudentList} />
         </Switch>
       </MasterLayout>
     </BrowserRouter>

@@ -53,12 +53,12 @@ const BasicInformation = ({ handleChange, handleDateChange, handleClick, formDat
               label="Deparment"
               
             >
-              <MenuItem value="PMAB">Pharmacological, Medical and Agronomical Biotechnology</MenuItem>
-              <MenuItem value="ICT">Information Technology and Communication</MenuItem>
-              <MenuItem value="MST">Medical Science and Technology</MenuItem>
-              <MenuItem value="CS">Cyber security</MenuItem>
-              <MenuItem value="AE">Aeronautical Maintenance and Engineering Operations</MenuItem>
-              <MenuItem value="FST">Food Science and Technology</MenuItem>
+              <MenuItem value="Pharmacological, Medical and Agronomical Biotechnology">Pharmacological, Medical and Agronomical Biotechnology</MenuItem>
+              <MenuItem value="Information Technology and Communication">Information Technology and Communication</MenuItem>
+              <MenuItem value="Medical Science and Technology">Medical Science and Technology</MenuItem>
+              <MenuItem value="Cyber security">Cyber security</MenuItem>
+              <MenuItem value="Aeronautical Maintenance and Engineering Operations">Aeronautical Maintenance and Engineering Operations</MenuItem>
+              <MenuItem value="Food Science and Technology">Food Science and Technology</MenuItem>
               <MenuItem value=""><em>None</em></MenuItem>
             </Select>
           </FormControl>

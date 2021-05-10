@@ -7,7 +7,7 @@ export const getStudentList = async (req, res) => {
     res.status(200).json(studentList);
   } catch (error) {
     res.status(404).json({ message: error.message })
-  }
+  } 
 }
 
 export const createStudent = async (req, res) => {
@@ -51,7 +51,7 @@ export const getProfile = async (req, res) => {
 }
 
 export const updateProfile = async (req, res) => {
-  const update = req.body
+  const update = req.body;
   const filter = { studentID: req.body.studentID };
 
   try {

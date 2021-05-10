@@ -54,34 +54,6 @@ const Internship = ({ handleChange, handleDateChange, handleClick, formData }) =
             />
           </MuiPickersUtilsProvider>
         </Grid> 
-
-        {/* Line Break */}
-        <Grid item sm={12}>
-          <TextField
-            
-            className={classes.textArea}
-            name="internship_objective"
-            value={formData?.internship?.objective}
-            label="Objective"
-            multiline
-            onChange={handleChange}
-            variant="outlined"
-          />
-        </Grid>
-
-        {/* Line Break */}
-        <Grid item sm={12}>
-          <TextField
-            
-            className={classes.textArea}
-            name="internship_outcome"
-            value={formData?.internship?.outcome}
-            label="Outcome"
-            multiline
-            onChange={handleChange}
-            variant="outlined"
-          />
-        </Grid>
       </Grid>
     </Paper>
   )

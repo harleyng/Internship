@@ -1,21 +1,19 @@
 import React from 'react'
-import Timeline from '@material-ui/lab/Timeline';
-import TimelineItem from '@material-ui/lab/TimelineItem';
-import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
-import TimelineConnector from '@material-ui/lab/TimelineConnector';
-import TimelineContent from '@material-ui/lab/TimelineContent';
-import TimelineDot from '@material-ui/lab/TimelineDot';
+import { Paper, Typography } from '@material-ui/core'
+import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineDot } from '@material-ui/lab'
+import { useSelector } from 'react-redux'
 
 import useStyles from './styles.js'
 import { first, second, third, fourth } from '../../../constants/profileSection'
 
 const SideNavigator = ({ HandlingSection }) => {
   const classes = useStyles();
+  const profile = useSelector(state => state.studentProfile)
   const SectionList = [first, second, third, fourth];
-
+  console.log(profile.comment)
   return (
-    <>
-      <Timeline align="right" className={classes.SideSticky}>
+    <div className={classes.SideSticky}>
+      <Timeline align="right">
         {SectionList.map((content, index) => (
             <TimelineItem className={classes.SideNavigatorItem}>
             <TimelineSeparator>
@@ -28,8 +26,15 @@ const SideNavigator = ({ HandlingSection }) => {
           </TimelineItem>
           ))}
       </Timeline>
-
-    </>
+      <Paper style={{width: '80%', padding: '20px 10px'}}>
+        <Typography variant='h6' align='center'>Information Review</Typography>
+        <ul align='left'>
+          {profile?.comment?.map(cmt => (
+            <li>{cmt}</li>
+          ))}
+        </ul>
+      </Paper>
+    </div>
   )
 }
 

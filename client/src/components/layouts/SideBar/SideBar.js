@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { List, ListItem, ListItemIcon, ListItemText, Divider, Hidden, Drawer, Typography } from '@material-ui/core'
-import { Person, RateReview } from '@material-ui/icons'
+import { Person, RateReview, Group, Description } from '@material-ui/icons'
 import useStyles from './styles'
 import { useTheme } from '@material-ui/core/styles';
 import { useHistory, useLocation, Link } from 'react-router-dom'
@@ -45,6 +45,18 @@ const SideBar = () => {
       icon: <RateReview />,
       path: '/students/topic',
       permisson: user?.result?.role === 'lecturer'
+    },
+    {
+      text: 'Student',
+      icon: <Group />,
+      path: '/students',
+      permisson: user?.result?.role === 'staff'
+    },
+    {
+      text: 'Document',
+      icon: <Description />,
+      path: '/documents',
+      permisson: user?.result?.role === 'staff'
     },
   ]
   // console.log(user)
