@@ -1,4 +1,4 @@
-import { GET_PROFILE, UPDATE_PROFILE, CREATE_STUDENT, GET_STUDENT_LIST } from '../constants/actionTypes';
+import { GET_PROFILE, UPDATE_PROFILE, CREATE_STUDENT, GET_STUDENT_LIST, GET_STUDENT_USER, GET_DOCUMENT } from '../constants/actionTypes';
 import * as api from '../api/student';
 
 export const createStudent = (formData, history) => async (dispatch) => {
@@ -22,9 +22,20 @@ export const getStudentList =  () => async (dispatch) => {
   } 
 }
 
+export const getStudentUser = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.getStudentUser(id);
+
+    dispatch({ type: GET_STUDENT_USER, payload: data });
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const getProfile = (id) => async (dispatch) => {
   try {
-    const { data } = await api.getProfile(id);
+    const { data } = await api.getProfileByUserID(id);
 
     dispatch({ type: GET_PROFILE, payload: data });
 

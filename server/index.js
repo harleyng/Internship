@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 import userRoutes from './routes/user.js';
 import studentRoutes from './routes/student.js';
+import documentRoutes from './routes/document.js';
 
 const app = express();
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(cors());
 
 app.use('/user', userRoutes);
 app.use('/student', studentRoutes);
+app.use('/document', documentRoutes);
 
 const PORT = process.env.PORT;
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
-import StudentsDataGrid from '../Student/studentDataGrid/StudentsDataGrid';
+import StudentsDataGrid from '../student/studentDataGrid/StudentsDataGrid';
 
 import { getStudentList } from '../../actions/student'
 

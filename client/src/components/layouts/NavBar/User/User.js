@@ -6,7 +6,6 @@ import decode from 'jwt-decode';
 import { IconButton, Menu, MenuItem, Typography, Button, Divider } from '@material-ui/core'
 import { AccountCircle } from '@material-ui/icons'
 import useStyles from './styles'
-import { getProfile } from '../../../../actions/student'
 
 
 const User = () => {
@@ -28,9 +27,6 @@ const User = () => {
     handleClose();
   }, [location, dispatch])
 
-  useEffect(() => {
-    dispatch(getProfile({userID: user?.result._id}));
-  }, [user])
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' })

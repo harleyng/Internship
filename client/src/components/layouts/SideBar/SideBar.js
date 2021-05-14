@@ -6,7 +6,9 @@ import useStyles from './styles'
 import { useTheme } from '@material-ui/core/styles';
 import { useHistory, useLocation, Link } from 'react-router-dom'
 
-import logo from '../../../img/logo-blue.png';
+import { getProfile } from '../../../actions/student';
+import { getDocument } from '../../../actions/document';
+import logo from '../../../assets/img/logo-blue.png';
 import { toggle } from '../../../actions/drawer'
 
 const SideBar = () => {
@@ -20,8 +22,10 @@ const SideBar = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => {
-    
-  }, [location, profile])
+    if (user?.result?.role === 'student') {
+      dispatch(getProfile({userID: user?.result._id}));
+    }
+  }, [location])
 
   const handleDrawerToggle = () => {
     dispatch(toggle(false));

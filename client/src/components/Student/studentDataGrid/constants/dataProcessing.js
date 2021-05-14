@@ -1,5 +1,5 @@
 import renderCellExpand from '../renderCellExpand'
-import TopicStatus from '../../../../containers/studentDataGrid/TopicStatus'
+import TopicStatus from '../../../../containers/student/studentDataGrid/TopicStatus'
 
 export const defaultColumns = [
   { field: 'studentID', headerName: 'Student ID', width: 130, renderCell: renderCellExpand },

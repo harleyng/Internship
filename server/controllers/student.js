@@ -1,10 +1,22 @@
 import Student from '../models/student.js'
+import User from '../models/user.js'
 
-export const getStudentList = async (req, res) => {
+export const getStudentUser = async (req, res) => {
+  const { id } = req.params
   try {
-    const studentList = await Student.find();
+    const studentUser = await User.findOne({ id });
 
-    res.status(200).json(studentList);
+    res.status(200).json(studentUser);
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  } 
+}
+
+export const getStudents= async (req, res) => {
+  try {
+    const students = await Student.find();
+
+    res.status(200).json(students);
   } catch (error) {
     res.status(404).json({ message: error.message })
   } 
@@ -35,12 +47,10 @@ export const createStudent = async (req, res) => {
 }
 
 export const getProfile = async (req, res) => {
-  const studentID = req.body.studentID;
-  const userID = req.body.userID;
+  const id = req.body;
   try {
-    if (userID || studentID) {
-      const existingStudent = await Student.findOne({ userID }) || await Student.findOne({ studentID });
-
+    if (id) {
+      const existingStudent = await Student.findOne(id);
       res.status(201).json(existingStudent);
     }
 
@@ -53,7 +63,7 @@ export const getProfile = async (req, res) => {
 export const updateProfile = async (req, res) => {
   const update = req.body;
   const filter = { studentID: req.body.studentID };
-
+ 
   try {
     const updatedProfile = await Student.findOneAndUpdate(filter, update, {
       new: true,

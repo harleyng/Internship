@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import BasicInformation from '../../../containers/Student/ProfileEditor/MainForm/BasicInformation'
-import Internship from '../../../containers/Student/ProfileEditor/MainForm/Internship';
-import Supervisor from '../../../containers/Student/ProfileEditor/MainForm/Supervisor';
-import Topic from '../../../containers/Student/ProfileEditor/MainForm/Topic';
+import BasicInformation from '../../../containers/student/ProfileEditor/MainForm/BasicInformation'
+import Internship from '../../../containers/student/ProfileEditor/MainForm/Internship';
+import Supervisor from '../../../containers/student/ProfileEditor/MainForm/Supervisor';
+import Topic from '../../../containers/student/ProfileEditor/MainForm/Topic';
 
 const MainForm = ({ handleClick, handleChange, handleDateChange, formData, setFormData }) => {
   const profile = useSelector(state => state.studentProfile)

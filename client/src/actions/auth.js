@@ -23,7 +23,7 @@ export const signup = (formData, history) => async (dispatch) => {
     const user = JSON.parse(localStorage.getItem('profile'))
     console.log(user)
     if (user.result.role === 'student') {
-      history.push('/student/new')
+      history.push('/students/new')
     } else {
       history.push('/');
     }

@@ -26,7 +26,7 @@ const StudentsDataGrid = ({ hide, role, staffToolBar }) => {
     processData(hide);
   }, [students])
 
-  // Data
+  // Data 
   let cols = defaultColumns;
   const processData = (hide) => {
     // Colums
@@ -49,7 +49,7 @@ const StudentsDataGrid = ({ hide, role, staffToolBar }) => {
         studentID: student.studentID,
         fullName: student.fullName,
         phoneNo: student.phoneNo,
-        DOB: new Date(Date.parse(student.DOB)).toLocaleDateString('en-GB'),
+        DOB: new Date(student.DOB).toLocaleDateString('en-GB'),
         academicYear: student.academicYear,
         department: student.department,
         supervisor_internal: student.supervisor.internal,
@@ -59,7 +59,7 @@ const StudentsDataGrid = ({ hide, role, staffToolBar }) => {
         supervisor_department: student.supervisor.department,
         supervisor_phoneNo: student.supervisor.phoneNo,
         supervisor_address: student.supervisor.address || 'x',
-        supervisor_DOB: new Date(Date.parse(student.supervisor.DOB)).toLocaleDateString('en-GB') || 'x',
+        supervisor_DOB: new Date(student.supervisor.DOB).toLocaleDateString('en-GB') || 'x',
         supervisor_PITCode: student.supervisor.PITCode || 'x',
         supervisor_personalID_No: student.supervisor?.personalID?.No || 'x',
         supervisor_personalID_givenDate: student.supervisor?.personalID?.givenDate || 'x',
@@ -67,13 +67,13 @@ const StudentsDataGrid = ({ hide, role, staffToolBar }) => {
         supervisor_bankAccount_bankName: student.supervisor?.bankAccount?.bankName || 'x',
         supervisor_bankAccount_No: student.supervisor?.bankAccount?.No || 'x',
         supervisor_bankAccount_branch: student.supervisor?.bankAccount?.branch || 'x',
-        internship_topic: student.internship.topic,
-        internship_objective: student.internship.objective,
-        internship_outcome: student.internship.outcome,
-        internship_location: student.internship.location,
-        internship_host: student.internship.host,
-        internship_topicStatus: student.internship.topicStatus,
-        internship_updatedAt: moment(student.internship.updatedAt).fromNow(),
+        internship_topic: student.internship?.topic,
+        internship_objective: student.internship?.objective,
+        internship_outcome: student.internship?.outcome,
+        internship_location: student.internship?.location,
+        internship_host: student.internship?.host,
+        internship_topicStatus: student.internship?.topicStatus,
+        internship_updatedAt: moment(student.internship?.updatedAt).fromNow(),
         comment: student.comment,
       })
     })

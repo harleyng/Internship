@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { yellow, red, green } from '../../constants/colors'
+import { yellow, red, green } from '../../../constants/colors'
 
 const useStyles = makeStyles((theme) => ({
   status: {

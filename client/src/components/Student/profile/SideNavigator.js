@@ -10,7 +10,7 @@ const SideNavigator = ({ HandlingSection }) => {
   const classes = useStyles();
   const profile = useSelector(state => state.studentProfile)
   const SectionList = [first, second, third, fourth];
-  console.log(profile.comment)
+  // console.log(profile.comment)
   return (
     <div className={classes.SideSticky}>
       <Timeline align="right">
@@ -26,6 +26,7 @@ const SideNavigator = ({ HandlingSection }) => {
           </TimelineItem>
           ))}
       </Timeline>
+      {profile.comment?.length ? (
       <Paper style={{width: '80%', padding: '20px 10px'}}>
         <Typography variant='h6' align='center'>Information Review</Typography>
         <ul align='left'>
@@ -34,6 +35,7 @@ const SideNavigator = ({ HandlingSection }) => {
           ))}
         </ul>
       </Paper>
+      ) : null}
     </div>
   )
 }

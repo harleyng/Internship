@@ -1,6 +1,6 @@
 import { GET_STUDENT_LIST, CREATE_STUDENT } from "../constants/actionTypes";
 
-const studentProfile = (students = [], action) => {
+const students = (students = [], action) => {
   switch (action.type) {
     case GET_STUDENT_LIST:
       return action.payload;
@@ -11,4 +11,4 @@ const studentProfile = (students = [], action) => {
   }
 }
 
-export default studentProfile;
+export default students;
