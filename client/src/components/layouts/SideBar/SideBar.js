@@ -62,6 +62,18 @@ const SideBar = () => {
       path: '/documents',
       permisson: user?.result?.role === 'staff'
     },
+    {
+      text: 'Student',
+      icon: <Group />,
+      path: '/students/internship',
+      permisson: user?.result?.role === 'council'
+    },
+    {
+      text: 'Student',
+      icon: <Group />,
+      path: '/students/internship',
+      permisson: !user //Supervisor | Public
+    },
   ]
   // console.log(user)
   const drawer = (

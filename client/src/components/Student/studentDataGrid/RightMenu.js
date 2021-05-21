@@ -43,6 +43,22 @@ const RightMenu = ({ selectedRow, rows, role, mousePosition, setMousePosition, m
     })
     handleClose();
   }
+
+  // Council Evaluate Student
+  const handleEvaluateStudent = () => {
+    if (role === 'council') {
+      selectedRow.forEach(selectedEl => {
+        window.open(`/student/evaluate/council/${selectedEl}`)
+      })
+    } else {
+      selectedRow.forEach(selectedEl => {
+        window.open(`/student/evaluate/supervisor/${selectedEl}`)
+      }) 
+    }
+
+    handleClose();
+  }
+
   return (
     <Menu
       keepMounted
@@ -55,16 +71,22 @@ const RightMenu = ({ selectedRow, rows, role, mousePosition, setMousePosition, m
           : undefined
       }
     >
-      {role === 'lecturer' ? (
+      { role === 'lecturer' ? 
         <>
           <MenuItem onClick={handleApprove}>Approve</MenuItem>
           <MenuItem onClick={handleRefuse}>Refuse</MenuItem>
         </>
-      ) : (
-        <>
-          <MenuItem onClick={handleOpenProfile}>Open Profile</MenuItem>
-        </>
-      )}
+       : [(
+        role === 'staff' ? 
+          <>
+            <MenuItem onClick={handleOpenProfile}>Open Profile</MenuItem>
+          </>
+         : 
+          <>
+            <MenuItem onClick={handleEvaluateStudent}>Evaluate Student</MenuItem>
+          </>
+       )]
+      }
     </Menu>     
   )
 }
