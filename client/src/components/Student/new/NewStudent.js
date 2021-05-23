@@ -5,7 +5,8 @@ import useStyles from './styles'
 import { useHistory } from 'react-router-dom'
 
 import { createStudent } from "../../../actions/student";
-import { createDocument } from '../../../actions/document'
+import { createDocumentModel } from '../../../actions/document';
+import { createScore } from '../../../actions/score';
 
 const NewStudent = () => {
   const classes = useStyles();
@@ -16,7 +17,8 @@ const NewStudent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createDocument(studentID));
+    dispatch(createScore(studentID));
+    dispatch(createDocumentModel(studentID));
     dispatch(createStudent({userID: user.result._id, studentID: studentID}, history));
   }
   return (

@@ -12,13 +12,11 @@ export const getDocuments = async (req, res) => {
 
 export const createDocumentModel = async (req, res) => {
   const studentID = req.params.studentID;
-  const newDocument = new Document({ studentID: studentID, documents: [] });
   try {
+    const newDocument = new Document({ studentID: studentID, documents: [] });
     await newDocument.save();
 
-    const documents = await Document.find();
-
-    res.status(201).json(documents);
+    res.status(201).json(newDocument);
   } catch (error) {
     res.status(500).json({ message: "Something went wrong." }); 
   }

@@ -70,6 +70,7 @@ const Auth = () => {
                     <FormControlLabel value="staff" control={<Radio />} label="Staff" />
                     <FormControlLabel value="lecturer" control={<Radio />} label="Lecturer" />
                     <FormControlLabel value="council" control={<Radio />} label="Council" />
+                    <FormControlLabel value="supervisor" control={<Radio />} label="Supervisor" />
                   </RadioGroup>
                 </FormControl>
               </Grid>

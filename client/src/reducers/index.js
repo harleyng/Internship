@@ -7,7 +7,8 @@ import studentProfile from './studentProfile'
 import studentUser from "./studentUser";
 import documents from './documents'
 import kanbanList from './kanbanList'
+import studentScore from './studentScore'
 
 export default combineReducers({
-  auth, drawerToggler, students, studentProfile, studentUser, documents, kanbanList, 
+  auth, drawerToggler, students, studentProfile, studentUser, documents, kanbanList, studentScore,
 })

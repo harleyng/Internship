@@ -18,6 +18,11 @@ export const CREATE_DOCUMENT_MODEL = 'CREATE_DOCUMENT_MODEL';
 export const CREATE_DOCUMENT = 'CREATE_DOCUMENT';
 export const UPDATE_DOCUMENT = 'UPDATE_DOCUMENT'; 
 
+// SCORE
+export const GET_SCORE_LIST = 'GET_SCORE_LIST';
+export const CREATE_SCORE = 'CREATE_SCORE';
+export const UPDATE_SCORE = 'UPDATE_SCORE';
+
 // KANBAN
 export const ADD_LIST = 'ADD_LIST';
 export const ADD_CARD = 'ADD_CARD';

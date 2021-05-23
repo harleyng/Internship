@@ -66,14 +66,14 @@ const SideBar = () => {
       text: 'Student',
       icon: <Group />,
       path: '/students/internship',
-      permisson: user?.result?.role === 'council'
+      permisson: user?.result?.role === 'council' || user?.result?.role === 'supervisor'
     },
     {
-      text: 'Student',
-      icon: <Group />,
-      path: '/students/internship',
-      permisson: !user //Supervisor | Public
-    },
+      text: user?.result?.role === 'student' ? 'Score' : 'Evaluation' ,
+      icon: <RateReview />,
+      path: '/students/score',
+      permisson: user?.result?.role === 'council' || user?.result?.role === 'supervisor'  
+    }
   ]
   // console.log(user)
   const drawer = (

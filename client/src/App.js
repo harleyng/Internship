@@ -12,8 +12,8 @@ import ExportContainer from './containers/document/ExportContainer'
 import Documents from './containers/document/staffHandle/Documents'
 import StudentInternship from './components/student/StudentInternship'
 import Council from './components/student/evaluation/Council'
-import Supervisor from './components/student/evaluation/Supervisor'
 import Kanban from './components/logbook/kanban/Kanban'
+import StudentScore from './components/student/StudentScore'
 
 const App = () => {
   return (
@@ -26,6 +26,8 @@ const App = () => {
           {/* Student */}
           <Route exact path="/student/:studentID" component={ProfileEditor} />
           <Route exact path="/students/new" component={NewStudent} />
+          <Route exact path="/students/score" component={StudentScore} /> 
+          <Route exact path="/students/internship" component={StudentInternship} />
           <Route exact path="/kanban" component={Kanban} />
 
           {/* Lecturer */}
@@ -37,11 +39,8 @@ const App = () => {
           <Route exact path="/documents" component={Documents} />
 
           {/* Council */}
-          <Route exact path="/students/internship" component={StudentInternship} />
-          <Route exact path="/student/evaluate/council/:studentID" component={Council} />
+          <Route exact path="/student/:studentID/council-evaluate" component={Council} />
 
-          {/* Supervisor */}
-          <Route exact path="/student/evaluate/supervisor/:studentID" component={Supervisor} />
         </Switch>
       </MasterLayout>
     </BrowserRouter>

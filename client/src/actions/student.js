@@ -1,4 +1,4 @@
-import { GET_PROFILE, UPDATE_PROFILE, CREATE_STUDENT, GET_STUDENT_LIST, GET_STUDENT_USER, GET_DOCUMENT } from '../constants/actionTypes';
+import { GET_PROFILE, UPDATE_PROFILE, CREATE_STUDENT, GET_STUDENT_LIST, GET_STUDENT_USER } from '../constants/actionTypes';
 import * as api from '../api/student';
 
 export const createStudent = (formData, history) => async (dispatch) => {

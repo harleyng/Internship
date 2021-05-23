@@ -45,7 +45,7 @@ const CustomToolbar = ({ selectedCellParams, modalOpen, setModalOpen, staffToolB
     <>
     <GridToolbarContainer>
       <GridColumnsToolbarButton style={{marginLeft: '10px'}}/>
-      <GridFilterToolbarButton style={{margin: '5px 10px'}} />
+      <GridFilterToolbarButton style={{margin: '0px 10px'}} />
       <GridDensitySelector/>
       {staffToolBar ? (
         <>
