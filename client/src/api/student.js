@@ -1,7 +1,7 @@
 import API from './index'
 
 // Profile
-export const getProfileByUserID = (id) => API.post(`/student/getProfile`, id);
+export const getProfile = (id) => API.post(`/student/getProfile`, id);
 export const updateProfile = (updatedData) => API.put('/student/updateProfile', updatedData);
 
 // Student

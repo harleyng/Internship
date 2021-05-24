@@ -1,21 +1,28 @@
-import React from 'react'
-import { FormControl, OutlinedInput, InputAdornment, Paper, Typography } from "@material-ui/core";
+import React, { useEffect } from 'react'
+import { Grid } from "@material-ui/core";
+import { useDispatch } from 'react-redux'
+
+import DefenseForm from '../../../containers/student/evaluation/DefenseForm';
+import ReportForm from '../../../containers/student/evaluation/ReportForm';
+import { getProfile } from '../../../actions/student';
 
 const Council = (props) => {
+  const dispatch = useDispatch();
   const studentID = props.match.params.studentID;
+
+  useEffect(() => {
+    dispatch(getProfile({studentID: studentID}));
+  }, [dispatch])
+
   return (
-    <Paper>
-      <Typography>Evaluate your student on the scale of 20</Typography>
-      <FormControl variant="outlined">
-        <OutlinedInput
-          // value={values.weight}
-          // onChange={handleChange('weight')}
-          type="number"
-          endAdornment={<InputAdornment position="end">/20</InputAdornment>}
-          labelWidth={0}
-        />
-      </FormControl>
-    </Paper>
+    <Grid container>
+      <Grid item sx={12} lg={6}>
+        <DefenseForm />
+      </Grid>
+      <Grid item sx={12} lg={6}>
+        <ReportForm />
+      </Grid>
+    </Grid>
   )
 }
 

@@ -60,7 +60,6 @@ const ScoreDataGrid = () => {
   };
   
   const handleCellClick = useCallback((params) => {
-    console.log(params)
     setSelectedCellParams(params);
   }, [])
 

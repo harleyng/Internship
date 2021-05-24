@@ -17,3 +17,7 @@ export const document_header_1_EN = 'Socialist Republic of Vietnam'
 export const document_header_1_VN = 'Cộng hoà Xã hội Chủ nghĩa Việt Nam'
 export const document_header_2_EN = 'Independence - Freedom - Happiness'
 export const document_header_2_VN = 'Độc lập - Tự do - Hạnh phúc'
+
+// Evaluation Form
+export const defense_evaluation = 'Internship Defense Evaluation Form for Jury Member'
+export const report_evaluation = 'Report/Thesis Assessment Form for Reviewer'

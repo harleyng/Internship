@@ -35,7 +35,7 @@ export const getStudentUser = (id) => async (dispatch) => {
 
 export const getProfile = (id) => async (dispatch) => {
   try {
-    const { data } = await api.getProfileByUserID(id);
+    const { data } = await api.getProfile(id);
 
     dispatch({ type: GET_PROFILE, payload: data });
 
