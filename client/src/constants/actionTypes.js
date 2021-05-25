@@ -22,6 +22,8 @@ export const UPDATE_DOCUMENT = 'UPDATE_DOCUMENT';
 export const GET_SCORE_LIST = 'GET_SCORE_LIST';
 export const CREATE_SCORE = 'CREATE_SCORE';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
+export const GET_EVALUATION = 'GET_EVALUATION';
+export const UPDATE_EVALUATION = 'UPDATE_EVALUATION';
 
 // KANBAN
 export const ADD_LIST = 'ADD_LIST';

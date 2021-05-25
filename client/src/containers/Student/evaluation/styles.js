@@ -48,7 +48,7 @@ export default makeStyles((theme) => ({
     marginTop: 10
   },
   formContainer: {
-    padding: '5% 10%',
+    padding: '80px 120px',
     margin: '0 10px'
   },
   listDash: {

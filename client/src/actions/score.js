@@ -1,4 +1,4 @@
-import { GET_SCORE_LIST, CREATE_SCORE, UPDATE_SCORE } from '../constants/actionTypes';
+import { GET_SCORE_LIST, CREATE_SCORE, UPDATE_SCORE, UPDATE_EVALUATION, GET_EVALUATION } from '../constants/actionTypes';
 import * as api from '../api/score';
 
 export const getScoreList = () => async (dispatch) => {
@@ -21,12 +21,35 @@ export const createScore = (studentID) => async (dispatch) => {
   } 
 }
 
-export const updateScore = (id, score) => async (dispatch) => {
+export const updateScore = (studentID, score) => async (dispatch) => {
+  console.log(score)
   try {
-    const { data } = await api.updateScore(id, score);
+    const { data } = await api.updateScore(studentID, score);
 
     dispatch({type: UPDATE_SCORE, payload: data});
   } catch (error) {
     console.log(error)
+  }
+}
+
+export const updateEvaluation = (studentID, updateData) => async (dispatch) => {
+  console.log(updateData)
+  try {
+    const { data } = await api.updateEvaluation(studentID, updateData);
+
+    dispatch({type: UPDATE_EVALUATION, payload: data});
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const getEvaluation = (studentID) => async (dispatch) => {
+  try {
+    const { data } = await api.getEvaluation(studentID);
+
+    dispatch({ type: GET_EVALUATION, payload: data });
+
+  } catch (error) {
+    console.log(error);
   }
 }

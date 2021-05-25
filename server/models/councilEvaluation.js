@@ -4,9 +4,11 @@ const councilEvaluationSchema = mongoose.Schema({
   id       : String,
   studentID: { type: String, required: true },
   defense  : {
-    juryMember : [String],
+    juryMember : String,
     institution: String,
     contact    : String,
+    overallDecision: Number,
+    comments       : String,
     criteria   : {
       introduction       : Number,
       literatureReview   : Number,
@@ -14,15 +16,14 @@ const councilEvaluationSchema = mongoose.Schema({
       feasibilityStudy   : Number,
       overallPerformance : Number,
     },
-    overallDecision: String,
-    comments       : String
-  },
+  },  
   report: {
-    reviewerName: String,
-    institution : String,
-    contact     : String,
-    ratings     : Number,
-    review      : {
+    juryMember : String,
+    institution: String,
+    contact    : String,
+    ratings    : Number,
+    comments   : String,
+    review     : {
       background    : Number,
       objective     : Number,
       approach      : Number,

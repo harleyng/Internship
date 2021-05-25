@@ -36,14 +36,15 @@ const ScoreDataGrid = () => {
 
   if (score) {
     for (let i = 0; i < score.length; i++) {
+      const total = score[i].supervisor + score[i].report + score[i].presentation;
       rows.push({
         id: score[i]._id,
         studentID: score[i].studentID,
         supervisor: score[i].supervisor,
         report: score[i].report,
         presentation: score[i].presentation,
-        total: score[i].supervisor + score[i].report + score[i].presentation || 'Evaluating...',
-        final: score[i].total/5 || 'Evaluating...'
+        total: total || 'Evaluating...',
+        final: Math.round(total/3 * 10) /10 || 'Evaluating...'
       })
     }
   }

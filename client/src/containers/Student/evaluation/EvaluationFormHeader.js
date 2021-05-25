@@ -5,8 +5,9 @@ import useStyles from './styles'
 import logo from '../../../assets/img/usth-logo.png'
 import { university_EN } from '../../../constants/document'
 
-const EvaluationFormHeader = ({ documentName, studentName, internshipTopic }) => {
+const EvaluationFormHeader = ({ documentName, studentName, internshipTopic, handleEvaluation, juryData, department }) => {
   const classes = useStyles();
+  const year = new Date().getFullYear()
 
   return (
     <div>
@@ -18,8 +19,8 @@ const EvaluationFormHeader = ({ documentName, studentName, internshipTopic }) =>
             <Typography display='block' className={classes.bold}>{documentName}</Typography>
           </Box>
           <Grid container>
-            <Grid xs={6}>Department:</Grid>
-            <Grid xs={6}>Year:</Grid>
+            <Grid xs={9}>Department: {department}</Grid>
+            <Grid xs={3}>Year: {year}</Grid>
           </Grid>
         </Grid>
       </Grid>
@@ -38,14 +39,14 @@ const EvaluationFormHeader = ({ documentName, studentName, internshipTopic }) =>
         </tr>
         <tr>
           <td className={classes.italic}>Jury Member</td>
-          <td><TextField className={classes.textField} name='juryMember' /></td>
+          <td><TextField className={classes.textField} name='juryMember' onChange={handleEvaluation} value={juryData?.juryMember}/></td>
         </tr>
         <tr>
           <td className={classes.italic}>Institution</td>
-          <td><TextField className={classes.textField} name='institution' /></td>
+          <td><TextField className={classes.textField} name='institution' onChange={handleEvaluation} value={juryData?.institution} /></td>
         </tr><tr>
           <td className={classes.italic}>Contact (email & phone)</td>
-          <td><TextField className={classes.textField} name='contact' /></td>
+          <td><TextField className={classes.textField} name='contact' onChange={handleEvaluation} value={juryData?.contact} /></td>
         </tr>
       </table>
     </div>
