@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
@@ -7,10 +7,16 @@ import KanbanList from './KanbanList'
 import KanbanActionButton from './KanbanActionButton'
 import { sort } from '../../../actions/kanban'
 
-const Kanban = () => {
+const Kanban = ({taskID, page}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const lists = useSelector(state => state.kanbanList)
+  const task = useSelector(state => state.task)
+  const lists = task.lists
+
+  useEffect(() => { 
+    // console.log(taskID)
+    console.log(task)
+  }, [task, page])
 
   const onDragEnd = (result) => {
     const { destination, source, draggableID, type } = result;
@@ -31,13 +37,17 @@ const Kanban = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="all-lists" direction="horizontal" type="list">
         {provided => (
-          <div className={classes.kanbanContainer} {...provided.droppableProps} ref={provided.innerRef}>
-            {lists.map((list, index) => (
-              <KanbanList key={list.id} index={index} listID={list.id} title={list.title} cards={list.cards} />
-            ))}
-            {provided.placeholder}
-            <KanbanActionButton list />
-          </div>
+            <div className={classes.kanbanContainer} {...provided.droppableProps} ref={provided.innerRef}>
+              {lists?.length ? (
+                <>
+                  {lists.map((list, index) => (
+                    <KanbanList key={list._id} index={index} listID={list._id} title={list.title} cards={list.cards} taskID={taskID} />
+                  ))}
+                </>
+              ) : null}
+              {provided.placeholder}
+              <KanbanActionButton list taskID={taskID}/>
+            </div>
         )}
       </Droppable>
     </DragDropContext>

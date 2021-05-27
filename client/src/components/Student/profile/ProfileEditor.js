@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Button, Icon, CircularProgress } from '@material-ui/core'
+import { Grid, Button, Icon } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 
 import MainForm from './MainForm'
@@ -66,20 +66,20 @@ const ProfileEditor = (props) => {
   const handleChange = (e) => {
     if (e.target?.name.includes('supervisor')) {
       if (e.target?.name === 'supervisor_internal') {
-        setFormData({ ...formData, ['supervisor']: {...formData.supervisor, ['internal']: !formData.supervisor.internal}})
+        setFormData({ ...formData, 'supervisor': {...formData.supervisor, 'internal': !formData.supervisor.internal}})
       } else if (e.target.name.includes('personalID')) {
         const key = e.target.name.split('_')[2];
-        setFormData({ ...formData, ['supervisor']: {...formData.supervisor, ['personalID']: {...formData.supervisor.personalID, [key]: e.target.value}}});
+        setFormData({ ...formData, 'supervisor': {...formData.supervisor, 'personalID': {...formData.supervisor.personalID, [key]: e.target.value}}});
       } else if (e.target.name.includes('bankAccount')) {
         const key = e.target.name.split('_')[2];
-        setFormData({ ...formData, ['supervisor']: {...formData.supervisor, ['bankAccount']: {...formData.supervisor.bankAccount, [key]: e.target.value}}});
+        setFormData({ ...formData, 'supervisor': {...formData.supervisor, 'bankAccount': {...formData.supervisor.bankAccount, [key]: e.target.value}}});
       } else {
         const key = e.target.name.split('_')[1];
-        setFormData({ ...formData, ['supervisor']: {...formData.supervisor, [key]: e.target.value}});
+        setFormData({ ...formData, 'supervisor': {...formData.supervisor, [key]: e.target.value}});
       } 
     } else if (e.target?.name.includes('internship')) {
       const key = e.target.name.split('_')[1];  
-      setFormData({ ...formData, ['internship']: {...formData.internship, ['updatedAt']: new Date().toISOString(), ['topicStatus']: 'Pending',  [key]: e.target.value}});
+      setFormData({ ...formData, 'internship': {...formData.internship, 'updatedAt': new Date().toISOString(), 'topicStatus': 'Pending',  [key]: e.target.value}});
     } else {
       setFormData({ ...formData, [e.target.name]: e.target.value }) // Department
     }
@@ -88,10 +88,10 @@ const ProfileEditor = (props) => {
 
   const handleDateChange = (date, name) => {
     if (name.includes('supervisor')) {
-      setFormData({ ...formData, ['supervisor']: {...formData.supervisor, ['DOB']: date} })
+      setFormData({ ...formData, 'supervisor': {...formData.supervisor, 'DOB': date} })
     } else if (name.includes('internship')) {
       const key = name.split('_')[1];
-      setFormData({ ...formData, ['internship']: {...formData.internship, [key]: date} })
+      setFormData({ ...formData, 'internship': {...formData.internship, [key]: date} })
     } else {
       setFormData({ ...formData, [name]: date })
     }

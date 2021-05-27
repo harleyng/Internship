@@ -1,23 +1,25 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Card, Icon, TextareaAutosize } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 
 import useStyles from './styles'
-import { addList, addCard } from '../../../actions/kanban'
+import { createTaskList, createTaskCard } from '../../../actions/task'
 
-const KanbanActionButton = ({ listID, list }) => {
+const KanbanActionButton = ({ listID, list, taskID }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [formOpen, setFormOpen] = useState(false)
   const [text, setText] = useState('')
 
+  useEffect(() => {
+  }, [dispatch])
   const handleAdd = () => {
     if (text) {
-      setText('')
+      setText('') 
       if (list) {
-        dispatch(addList(text))
+        dispatch(createTaskList(taskID, {title: text}))
       } else {
-        dispatch(addCard(listID, text))
+        dispatch(createTaskCard(taskID, listID, {title: text}))
       }
     }
     return;
@@ -62,7 +64,7 @@ const KanbanActionButton = ({ listID, list }) => {
         </Card>
         <div className={classes.newCardButtonGroup}>
           <Button onMouseDown={handleAdd} variant='contained' className={classes.newCardSubmitButton}>{buttonTitle}</Button>
-          <Icon className={classes.newCardCloseButton}>close</Icon>
+          <Icon className={classes.newCardCloseButton} onMouseDown={closeForm}>close</Icon>
         </div>
       </div>
     )

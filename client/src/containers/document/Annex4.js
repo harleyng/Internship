@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react' 
+import React, { useEffect } from 'react' 
 import { useSelector } from "react-redux";
 import { Grid, Typography, CircularProgress, Divider, Paper, Button, Box } from '@material-ui/core'
-import moment from 'moment'
 
 import useStyles from './styles'
 import { annex4_EN, annex4_VN, 
-         university_EN, university_VN, 
-         academy_EN, academy_VN, 
          document_header_1_EN, document_header_1_VN, 
          document_header_2_EN, document_header_2_VN 
         } from '../../constants/document'
 
 const Annex4 = ({ profile, download, documentMode }) => {
   const classes = useStyles();
-  const [duration, setDuration] = useState(0);
   const user = useSelector(state => state.studentUser);
   const dateToday = new Date().getDate();
   const monthToday = new Date().getMonth() + 1;
@@ -21,11 +17,6 @@ const Annex4 = ({ profile, download, documentMode }) => {
   const today = new Date().toLocaleDateString('en-GB');
 
   useEffect(() => {
-    if (profile.internship) {
-      const startTime = moment(new Date(profile.internship.startTime).toLocaleDateString('en-DB'), 'M/D/YYYY');
-      const endTime = moment(new Date(profile.internship.endTime).toLocaleDateString('en-DB'), 'M/D/YYYY');
-      setDuration(endTime.diff(startTime, 'months'));
-    }
   }, [profile, user])
   return (
     !profile.supervisor && !profile.internship ? <CircularProgress /> : (

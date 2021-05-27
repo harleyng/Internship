@@ -12,8 +12,8 @@ import ExportContainer from './containers/document/ExportContainer'
 import Documents from './containers/document/staffHandle/Documents'
 import StudentInternship from './components/student/StudentInternship'
 import Council from './components/student/evaluation/Council'
-import Kanban from './components/logbook/kanban/Kanban'
 import StudentScore from './components/student/StudentScore'
+import Logbook from './components/logbook/Logbook'
 
 const App = () => {
   return (
@@ -28,8 +28,8 @@ const App = () => {
           <Route exact path="/students/new" component={NewStudent} />
           <Route exact path="/students/score" component={StudentScore} /> 
           <Route exact path="/students/internship" component={StudentInternship} />
-          <Route exact path="/kanban" component={Kanban} />
-
+          <Route exact path="/student/:studentID/logbook" component={Logbook} />
+ 
           {/* Lecturer */}
           <Route exact path="/students/topic" component={TopicReview} />
 

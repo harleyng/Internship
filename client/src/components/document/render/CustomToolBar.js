@@ -20,7 +20,7 @@ const CustomToolbar = ({ selectedCellParams, selectedRow, setModalOpen, modalOpe
     setModalOpen(true);
     setActionType(type);
     if (selectedCellParams?.value && actionType === 'Edit') {
-      setDocumentData({id: selectedCellParams?.id, document: { ['name']: selectedCellParams?.value?.name, ['status']: selectedCellParams?.value?.status}})
+      setDocumentData({id: selectedCellParams?.id, document: { 'name': selectedCellParams?.value?.name, 'status': selectedCellParams?.value?.status}})
     }
   }
 
@@ -34,7 +34,7 @@ const CustomToolbar = ({ selectedCellParams, selectedRow, setModalOpen, modalOpe
     if (e.target) {
       setDocumentData({id: selectedCellParams?.id, document: {...documentData.document, [e.target.name]: e.target.value}})
     } else {
-      setDocumentData({id: selectedCellParams?.id, document: {...documentData.document, ['image']: e.base64}})
+      setDocumentData({id: selectedCellParams?.id, document: {...documentData.document, 'image': e.base64}})
     }
     console.log(documentData)
   }

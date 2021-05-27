@@ -1,20 +1,18 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { List, ListItem, ListItemIcon, ListItemText, Divider, Hidden, Drawer, Typography } from '@material-ui/core'
-import { Person, RateReview, Group, Description } from '@material-ui/icons'
+import { Person, RateReview, Group, Description, Book } from '@material-ui/icons'
 import useStyles from './styles'
 import { useTheme } from '@material-ui/core/styles';
-import { useHistory, useLocation, Link } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 
 import { getProfile } from '../../../actions/student';
-import { getDocument } from '../../../actions/document';
 import logo from '../../../assets/img/logo-blue.png';
 import { toggle } from '../../../actions/drawer'
 
 const SideBar = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
   const mobileOpen = useSelector(state => state.drawerToggler);
@@ -36,12 +34,23 @@ const SideBar = () => {
       return (`/student/${profile?.studentID}`)
     }
   }
+  const accessLogbook = () => {
+    if (profile) {
+      return (`/student/${profile?.studentID}/logbook`)
+    }
+  }
 
   const SideBarItemList = [
     {
       text: 'Your Profile',
       icon: <Person />,
       path: (() => accessProfile()),
+      permisson: user?.result?.role === 'student'
+    },
+    {
+      text: 'Logbook',
+      icon: <Book />,
+      path: (() => accessLogbook()),
       permisson: user?.result?.role === 'student'
     },
     {

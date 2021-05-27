@@ -4,7 +4,7 @@ import { Draggable } from 'react-beautiful-dnd'
 
 import useStyles from './styles'
 
-const KanbanCard = ({ index, cardID, text }) => {
+const KanbanCard = ({ index, cardID, title }) => {
   const classes = useStyles();
   return (
     <Draggable draggableId={String(cardID)} index={index}>
@@ -12,8 +12,8 @@ const KanbanCard = ({ index, cardID, text }) => {
         <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
           <Card className={classes.cardContainer}>
             <CardContent>
-              <Typography gutterBottom>{text}</Typography>
-            </CardContent>
+              <Typography gutterBottom>{title}</Typography>
+            </CardContent> 
           </Card>
         </div>
       )}

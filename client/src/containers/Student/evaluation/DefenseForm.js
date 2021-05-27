@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Box, Paper, TextareaAutosize, TextField, Typography, FormControlLabel, RadioGroup, Radio, Button, Icon } from '@material-ui/core'
-import { useSelector } from 'react-redux'
 
 import useStyles from './styles'
 import EvaluationFormHeader from './EvaluationFormHeader'

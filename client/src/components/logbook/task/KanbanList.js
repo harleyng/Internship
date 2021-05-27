@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 
 import useStyles from './styles'
 import KanbanCard from './KanbanCard'
 import KanbanActionButton from './KanbanActionButton'
 
-const KanbanList = ({ index, listID, title, cards }) => {
+const KanbanList = ({ index, listID, title, cards, taskID }) => {
   const classes = useStyles();
+
+  useEffect(() => {
+    
+  }, [cards])
   return (
     <Draggable draggableId={String(listID)} index={index}>
       {provided => (
@@ -16,10 +20,10 @@ const KanbanList = ({ index, listID, title, cards }) => {
               <div className={classes.listContainer} {...provided.droppableProps} ref={provided.innerRef}>
                 <h4>{title}</h4>
                 {cards.map((card, index) =>(
-                  <KanbanCard key={card.id} index={index} text={card.text} cardID={card.id}/>
+                  <KanbanCard key={card.id} index={index} title={card.title} cardID={card.id}/>
                 ))}
                 {provided.placeholder}
-                <KanbanActionButton listID={listID}/>
+                <KanbanActionButton listID={listID} taskID={taskID} />
               </div>
             )}
           </Droppable>

@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react' 
-import { useSelector } from "react-redux";
 import { Grid, Typography, CircularProgress, Paper, Button, Box } from '@material-ui/core'
-import moment from 'moment'
 
 import useStyles from './styles'
 import { annex5_EN, annex5_VN, 

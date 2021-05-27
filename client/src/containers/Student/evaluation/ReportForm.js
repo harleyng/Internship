@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper, Typography, TextareaAutosize, Box, FormControl, RadioGroup, FormControlLabel, Radio, TextField, InputAdornment, Button, Icon } from '@material-ui/core'
+import { Paper, Typography, TextareaAutosize, Box, RadioGroup, FormControlLabel, Radio, TextField, InputAdornment, Button, Icon } from '@material-ui/core'
 
 import useStyles from './styles'
 import EvaluationFormHeader from './EvaluationFormHeader'

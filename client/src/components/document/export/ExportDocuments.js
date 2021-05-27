@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import html2pdf from 'html2pdf.js'
 
 import { getStudentUser } from '../../../actions/student';
-import useStyles from './styles'
 import DocumentSwitch from './DocumentSwitch'
 import Annex2 from '../../../containers/document/Annex2';
 import Annex3 from '../../../containers/document/Annex3';

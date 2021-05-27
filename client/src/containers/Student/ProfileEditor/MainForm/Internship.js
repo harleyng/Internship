@@ -1,8 +1,8 @@
 import React from 'react'
-import { Paper, Grid, Typography, TextField } from '@material-ui/core'
+import { Paper, Grid, Typography } from '@material-ui/core'
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import useStyles from './styles'
-import LuxonUtils from '@date-io/luxon';
+import LuxonUtils from '@date-io/luxon'
 
 import Input from './Input'
 import { fourth } from '../../../../constants/profileSection'

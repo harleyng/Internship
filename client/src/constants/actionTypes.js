@@ -29,3 +29,18 @@ export const UPDATE_EVALUATION = 'UPDATE_EVALUATION';
 export const ADD_LIST = 'ADD_LIST';
 export const ADD_CARD = 'ADD_CARD';
 export const DRAG_HAPPENED = 'DRAG_HAPPENED'
+
+// PLAN
+export const GET_PLAN = 'GET_PLAN';
+export const CREATE_PLAN = 'CREATE_PLAN';
+export const CREATE_PLAN_PERIOD = 'CREATE_PLAN_PERIOD';
+export const UPDATE_PLAN_PERIOD = 'UPDATE_PLAN_PERIOD';
+export const DELETE_PLAN_PERIOD = 'DELETE_PLAN_PERIOD';
+
+// TASK
+export const GET_TASK = 'GET_TASK';
+export const CREATE_TASK = 'CREATE_TASK';
+export const CREATE_TASK_LIST = 'CREATE_TASK_LIST';
+export const CREATE_TASK_CARD = 'CREATE_TASK_CARD';
+export const UPDATE_TASK = 'UPDATE_TASK';
+export const DELETE_TASK = 'DELETE_TASK';

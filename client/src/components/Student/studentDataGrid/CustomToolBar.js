@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { updateProfile } from '../../../actions/student'
-import CommentModal from './CommentModal';
+import CommentModal from '../../../containers/student/studentDataGrid/CommentModal';
 
 const CustomToolbar = ({ selectedCellParams, modalOpen, setModalOpen, staffToolBar }) => {
   const dispatch = useDispatch();

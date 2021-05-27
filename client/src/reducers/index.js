@@ -9,7 +9,14 @@ import documents from './documents'
 import kanbanList from './kanbanList'
 import studentScore from './studentScore'
 import councilEvaluation from './councilEvaluation'
+import plan from './plan'
+import task from './task'
 
 export default combineReducers({
-  auth, drawerToggler, students, studentProfile, studentUser, documents, kanbanList, studentScore, councilEvaluation, 
+  auth, // general
+  drawerToggler, // CSS
+  students, studentProfile, studentUser, // student
+  documents, // document
+  studentScore, councilEvaluation,  // score
+  kanbanList, plan, task, // Plan & task
 })

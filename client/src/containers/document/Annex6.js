@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react' 
 import { Grid, Typography, CircularProgress, Divider, Paper, Button, Box } from '@material-ui/core'
-import moment from 'moment'
 
 import useStyles from './styles'
 import { annex6_EN, annex6_VN, 

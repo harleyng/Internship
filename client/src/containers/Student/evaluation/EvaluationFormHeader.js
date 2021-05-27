@@ -12,7 +12,7 @@ const EvaluationFormHeader = ({ documentName, studentName, internshipTopic, hand
   return (
     <div>
       <Grid container>
-        <Grid xs={3}><img src={logo} /></Grid>
+        <Grid xs={3}><img src={logo} alt="logo"/></Grid>
         <Grid xs={9} className={classes.bold}>
           <Box align='center' mb={3}>
             <Typography display='block' variant='h6' className={classes.bold}>{university_EN}</Typography>

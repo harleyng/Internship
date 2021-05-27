@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
     width: '30vw',
     position: 'absolute',
     left: '50%',
-    top: '50%',
-    transform: 'translate(calc(-50% + 120px), 0)'
+    top: '50vh',
+    transform: 'translate(calc(-50% + 120px), -50%)'
   },
   modalContent: {
     padding: theme.spacing(5)
@@ -24,8 +24,6 @@ const CommentModal = ({handleCommentSubmit, modalOpen, handleCloseModal, handleC
   <Modal
     open={modalOpen}
     onClose={handleCloseModal}
-    aria-labelledby="simple-modal-title"
-    aria-describedby="simple-modal-description"
   >
     <form className={classes.modalContainer} onSubmit={handleCommentSubmit}>
       <Paper className={classes.modalContent}>

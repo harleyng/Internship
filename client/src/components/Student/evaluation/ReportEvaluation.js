@@ -40,8 +40,8 @@ const ReportEvaluation = ({ studentID, evaluationData, setEvaluationData, total,
 
   const sendEvaluationForm = () => {
     console.log(total)
-    // dispatch(updateEvaluation(studentID, evaluationData));
-    // dispatch(updateScore(studentID, total))
+    dispatch(updateEvaluation(studentID, evaluationData));
+    dispatch(updateScore(studentID, total))
   }
 
   return (

@@ -68,7 +68,6 @@ const kanbanList = (state = initialState, action) => {
         droppableIDEnd,
         droppableIndexStart,
         droppableIndexEnd,
-        draggableID,
         type
        } = action.payload;
       const newState = [...state];
