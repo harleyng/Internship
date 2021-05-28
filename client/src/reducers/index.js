@@ -6,7 +6,6 @@ import students from './students'
 import studentProfile from './studentProfile'
 import studentUser from "./studentUser";
 import documents from './documents'
-import kanbanList from './kanbanList'
 import studentScore from './studentScore'
 import councilEvaluation from './councilEvaluation'
 import plan from './plan'
@@ -18,5 +17,5 @@ export default combineReducers({
   students, studentProfile, studentUser, // student
   documents, // document
   studentScore, councilEvaluation,  // score
-  kanbanList, plan, task, // Plan & task
+  plan, task, // Plan & task
 })

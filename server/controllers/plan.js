@@ -30,6 +30,7 @@ export const createPlanPeriod = async (req, res) => {
   const filter = { studentID: req.params.studentID };
   let period = req.body;
   period.taskID = req.params.taskID
+  console.log(period)
   try {
     const plan = await Plan.findOne(filter)
     plan.periods.push(period)

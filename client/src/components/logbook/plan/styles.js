@@ -37,5 +37,8 @@ export default makeStyles((theme) => ({
     resize: 'none',
     width: '100%',
     outline: 'none',
+  }, 
+  planOverview: {
+    whiteSpace: 'pre'
   }
 }));

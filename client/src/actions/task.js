@@ -1,4 +1,4 @@
-import { CREATE_TASK, GET_TASK, CREATE_TASK_LIST, CREATE_TASK_CARD } from '../constants/actionTypes';
+import { CREATE_TASK, GET_TASK, CREATE_TASK_LIST, CREATE_TASK_CARD, DRAG_HAPPENED } from '../constants/actionTypes';
 import * as api from '../api/task';
 
 export const createTask = (taskID) => async (dispatch) => {
@@ -39,4 +39,10 @@ export const createTaskCard = (taskID, listID, title) => async (dispatch) => {
   } catch (error) {
     console.log(error)
   }
+}
+
+export const sort = (sortData) => async (dispatch) => {
+  dispatch({ type: DRAG_HAPPENED,payload: sortData})
+
+  await api.sort(sortData)
 }

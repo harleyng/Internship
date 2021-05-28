@@ -5,7 +5,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 import useStyles from './styles'
 import KanbanList from './KanbanList'
 import KanbanActionButton from './KanbanActionButton'
-import { sort } from '../../../actions/kanban'
+import { sort } from '../../../actions/task'
 
 const Kanban = ({taskID, page}) => {
   const classes = useStyles();
@@ -15,23 +15,25 @@ const Kanban = ({taskID, page}) => {
 
   useEffect(() => { 
     // console.log(taskID)
-    console.log(task)
+    // console.log(task)
+    // console.log(lists)
   }, [task, page])
 
   const onDragEnd = (result) => {
-    const { destination, source, draggableID, type } = result;
-    console.log(source)
+    const { destination, source, type } = result;
+    // console.log(source)
+    // console.log(destination)
     if(!destination) {
       return;
     }
-    dispatch(sort(
-      source.droppableId,
-      destination.droppableId,
-      source.index,
-      destination.index,
-      draggableID,
-      type
-    ))
+    dispatch(sort({
+      taskID: taskID,
+      droppableIDStart: source.droppableId,
+      droppableIDEnd: destination.droppableId,
+      droppableIndexStart: source.index,
+      droppableIndexEnd: destination.index,
+      type: type
+    }))
   }
   return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -50,7 +52,7 @@ const Kanban = ({taskID, page}) => {
             </div>
         )}
       </Droppable>
-    </DragDropContext>
+    </DragDropContext> 
   )
 }
 

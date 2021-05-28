@@ -7,6 +7,7 @@ import ActionButtons from './ActionButtons';
 import ActionModal from './ActionModal'
 import { createTask } from '../../../actions/task'
 import { createPlanPeriod } from '../../../actions/plan'
+import { Box, Typography } from '@material-ui/core';
 const UIDGenerator = require('uid-generator');
 
 const Plan = ({ studentID, page, setPage, setTaskID}) => {
@@ -20,13 +21,13 @@ const Plan = ({ studentID, page, setPage, setTaskID}) => {
   const periods = plan.periods || [];
 
   useEffect(() => {
-    // console.log(plan)
+    console.log(plan)
     setTaskID(periods[page - 1]?.taskID)
   }, [plan, page])
 
   const handleChangePage = (event, value) => {
-    console.log(page)
-    console.log(periods[page-1].taskID)
+    // console.log(page)
+    // console.log(periods[page-1].taskID)
 
     setPage(value)
     setTaskID(periods[page-1].taskID);
@@ -85,6 +86,10 @@ const Plan = ({ studentID, page, setPage, setTaskID}) => {
           return <PaginationItem className={classes.timeLinePaginationItem} {...item} />
         } }
       />
+      <Box m={10}>
+        <Typography variant='h5'>Overall Objective:</Typography>
+        <Typography className={classes.planOverview}>{periods[page-1]?.overview}</Typography>
+      </Box>
       <ActionModal 
         action={action}
         modalOpen={modalOpen}

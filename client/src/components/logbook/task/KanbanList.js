@@ -9,7 +9,7 @@ const KanbanList = ({ index, listID, title, cards, taskID }) => {
   const classes = useStyles();
 
   useEffect(() => {
-    
+    // console.log(cards) 
   }, [cards])
   return (
     <Draggable draggableId={String(listID)} index={index}>
@@ -20,7 +20,7 @@ const KanbanList = ({ index, listID, title, cards, taskID }) => {
               <div className={classes.listContainer} {...provided.droppableProps} ref={provided.innerRef}>
                 <h4>{title}</h4>
                 {cards.map((card, index) =>(
-                  <KanbanCard key={card.id} index={index} title={card.title} cardID={card.id}/>
+                  <KanbanCard key={card._id} index={index} title={card.title} cardID={card._id}/>
                 ))}
                 {provided.placeholder}
                 <KanbanActionButton listID={listID} taskID={taskID} />

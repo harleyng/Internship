@@ -68,7 +68,7 @@ const KanbanActionButton = ({ listID, list, taskID }) => {
         </div>
       </div>
     )
-  }
+  } 
 
   const openForm = () => {
     setFormOpen(true);
