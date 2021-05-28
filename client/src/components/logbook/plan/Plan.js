@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { Pagination, PaginationItem } from '@material-ui/lab';
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -6,8 +6,8 @@ import useStyles from './styles'
 import ActionButtons from './ActionButtons';
 import ActionModal from './ActionModal'
 import { createTask } from '../../../actions/task'
-import { createPlanPeriod } from '../../../actions/plan'
-import { Box, Typography } from '@material-ui/core';
+import { createPlanPeriod, updatePlanPeriod, deletePlanPeriod } from '../../../actions/plan'
+import { Box, Card, Typography } from '@material-ui/core';
 const UIDGenerator = require('uid-generator');
 
 const Plan = ({ studentID, page, setPage, setTaskID}) => {
@@ -21,21 +21,24 @@ const Plan = ({ studentID, page, setPage, setTaskID}) => {
   const periods = plan.periods || [];
 
   useEffect(() => {
-    console.log(plan)
     setTaskID(periods[page - 1]?.taskID)
-  }, [plan, page])
+  }, [plan])
 
   const handleChangePage = (event, value) => {
-    // console.log(page)
-    // console.log(periods[page-1].taskID)
-
     setPage(value)
-    setTaskID(periods[page-1].taskID);
-    // console.log(value)
   }
+
+  const handleChangeTask = useMemo(() => {
+    setTaskID(periods[page-1]?.taskID);
+  }, [page])
 
   // Action Modal
   const handleOpenModal = (type) => {
+    if (type === "Add") {
+      setPeriodData({})
+    } else {
+      setPeriodData(periods[page - 1])
+    } 
     setModalOpen(true);
     setAction(type)
   }
@@ -54,24 +57,29 @@ const Plan = ({ studentID, page, setPage, setTaskID}) => {
 
   const handleModalSubmit = async (e) => {
     e.preventDefault();
-
-    uidgen.generate()
-    .then(uid => {
-            // console.log(periodData)
-      console.log(uid)
-      console.log(periodData.taskID)
-      dispatch(createTask(uid))
-      dispatch(createPlanPeriod(studentID, uid, periodData))
-    })
-    .then(() => {
-      setPeriodData({})
-      handleCloseModal()
-    })
+    if (action === "Add") {
+      uidgen.generate()
+      .then(uid => {
+        // console.log(uid)
+        // console.log(periodData.taskID)
+        dispatch(createTask(uid))
+        dispatch(createPlanPeriod(studentID, uid, periodData))
+      })
+    } else if (action === "Update") {
+      dispatch(updatePlanPeriod(studentID, periodData))
+      console.log(periodData)
+    } else {
+      dispatch(deletePlanPeriod(studentID, periodData.taskID))
+      setPage((prevPage) => prevPage - 1)
+    }
+    handleCloseModal()
   }
 
   return (
     <>
-      <ActionButtons handleOpenModal={handleOpenModal} />
+      <Box mb={3}>
+        <ActionButtons handleOpenModal={handleOpenModal} />
+      </Box>
       <Pagination className={classes.timeLinePagination}
         variant="text"
         count={periods.length}
@@ -80,16 +88,19 @@ const Plan = ({ studentID, page, setPage, setTaskID}) => {
         renderItem={(item)=> {
           if (item.type === "page") {
             const index = item.page-1
-            item.page = periods[index].title + '\n' + new Date(periods[index].startTime).toLocaleDateString('en-GB') + ' - ' + new Date(periods[index].endTime).toLocaleDateString('en-GB')
-
+            if (periods[index].startTime && periods[index].endTime) {
+              item.page = periods[index].title + '\n' + new Date(periods[index].startTime).toLocaleDateString('en-GB') + ' - ' + new Date(periods[index].endTime).toLocaleDateString('en-GB')
+            } else {
+              item.page = periods[index].title 
+            }
           };
           return <PaginationItem className={classes.timeLinePaginationItem} {...item} />
         } }
       />
-      <Box m={10}>
+      <Card className={classes.planOverview}>
         <Typography variant='h5'>Overall Objective:</Typography>
-        <Typography className={classes.planOverview}>{periods[page-1]?.overview}</Typography>
-      </Box>
+        <Typography>{periods[page-1]?.overview}</Typography>
+      </Card>
       <ActionModal 
         action={action}
         modalOpen={modalOpen}

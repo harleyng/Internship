@@ -1,4 +1,4 @@
-import { CREATE_PLAN, CREATE_PLAN_PERIOD, GET_PLAN } from '../constants/actionTypes';
+import { CREATE_PLAN, CREATE_PLAN_PERIOD, GET_PLAN, UPDATE_PLAN_PERIOD, DELETE_PLAN_PERIOD } from '../constants/actionTypes';
 import * as api from '../api/plan';
 
 export const createPlan = (studentID) => async (dispatch) => {
@@ -26,6 +26,26 @@ export const createPlanPeriod = (studentID, uid, periodData) => async (dispatch)
     const { data } = await api.createPlanPeriod(studentID, uid, periodData);
 
     dispatch({ type: CREATE_PLAN_PERIOD, payload: data });
+  } catch (error) {
+    console.log(error);
+  } 
+}
+
+export const updatePlanPeriod = (studentID, periodData) => async (dispatch) => {
+  try {
+    const { data } = await api.updatePlanPeriod(studentID, periodData);
+
+    dispatch({ type: UPDATE_PLAN_PERIOD, payload: data });
+  } catch (error) {
+    console.log(error);
+  } 
+}
+
+export const deletePlanPeriod = (studentID, taskID) => async (dispatch) => {
+  try {
+    const { data } = await api.deletePlanPeriod(studentID, taskID);
+
+    dispatch({ type: DELETE_PLAN_PERIOD, payload: data });
   } catch (error) {
     console.log(error);
   } 

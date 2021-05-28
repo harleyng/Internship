@@ -10,7 +10,7 @@ const ActionButtons = ({ handleOpenModal }) => {
     <Box align='right'>
       <Button className={classes.planButton} onClick={() => handleOpenModal("Add")}>Add Period</Button>
       <Button className={classes.planButton} onClick={() => handleOpenModal("Update")}>Update Period</Button>
-      <Button className={classes.planButton} >Delete Period</Button>
+      <Button className={classes.planButton} onClick={() => handleOpenModal("Delete")} >Delete Period</Button>
     </Box>
   )
 }

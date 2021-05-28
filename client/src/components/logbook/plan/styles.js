@@ -39,6 +39,8 @@ export default makeStyles((theme) => ({
     outline: 'none',
   }, 
   planOverview: {
-    whiteSpace: 'pre'
+    whiteSpace: 'pre',
+    margin: '20px 0',
+    padding: '20px',
   }
 }));

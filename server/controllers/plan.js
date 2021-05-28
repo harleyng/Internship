@@ -30,7 +30,6 @@ export const createPlanPeriod = async (req, res) => {
   const filter = { studentID: req.params.studentID };
   let period = req.body;
   period.taskID = req.params.taskID
-  console.log(period)
   try {
     const plan = await Plan.findOne(filter)
     plan.periods.push(period)
@@ -38,6 +37,36 @@ export const createPlanPeriod = async (req, res) => {
     
     res.status(201).json(plan);
   } catch (error) {
+    res.status(500).json({ message: "Something went wrong." }); 
+  }
+}
+
+export const updatePlanPeriod = async (req, res) => {
+  const filter = { studentID: req.params.studentID };
+  const update = { $set: {'periods.$[element]': [req.body]} }
+  try {
+    const updatedPlan = await Plan.findOneAndUpdate(filter, update, {
+      arrayFilters: [{'element._id': req.body._id}],
+      new: true
+    });
+
+    res.status(201).json(updatedPlan);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong." }); 
+  }
+}
+
+export const deletePlanPeriod = async (req, res) => {
+  const filter = { studentID: req.params.studentID };
+  const update = { $pull: {periods: { taskID: [req.params.taskID]}} }
+  try {
+    const updatedPlan = await Plan.findOneAndUpdate(filter, update, {
+      arrayFilters: [{'element.taskID': req.params.taskID}],
+      new: true
+    });
+    res.status(201).json(updatedPlan);
+  } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Something went wrong." }); 
   }
 }
