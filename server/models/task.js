@@ -9,7 +9,10 @@ const taskSchema = mongoose.Schema({
       id         : String,
       title      : String,
       description: String,
-      attachment : String,
+      attachment : [{
+        name: String,
+        image: String
+      }],
       comment    : String,
     }]
   }],

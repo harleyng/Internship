@@ -101,6 +101,7 @@ export const deleteTaskCard = async (req, res) => {
     if (list._id == req.params.listID) {
       newCards = list.cards.filter(card => card._id != req.body._id)
     }
+    console.log(newCards)
   })
   const update = { $set: {'lists.$[element].cards': newCards} }
   try {
