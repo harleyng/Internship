@@ -3,8 +3,8 @@ import { Pagination, PaginationItem } from '@material-ui/lab';
 import { useDispatch, useSelector } from 'react-redux'
 
 import useStyles from './styles'
-import ActionButtons from './ActionButtons';
-import ActionModal from './ActionModal'
+import ActionButtons from '../../../containers/logbook/plan/ActionButtons';
+import ActionModal from '../../../containers/logbook/plan/ActionModal'
 import { createTask } from '../../../actions/task'
 import { createPlanPeriod, updatePlanPeriod, deletePlanPeriod } from '../../../actions/plan'
 import { Box, Card, Typography } from '@material-ui/core';

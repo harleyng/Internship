@@ -67,6 +67,54 @@ export const createTaskCard = async (req, res) => {
   }
 }
 
+export const updateTaskCard = async (req, res) => {
+  const filter = {_id: req.params.taskID};
+  let newCards
+  const task = await Task.findOne(filter)
+  task.lists.map(list => {
+    if (list._id == req.params.listID) {
+      newCards = list.cards.map(card => {
+        if (card._id == req.body._id) {
+          return req.body
+        } else return card
+      })
+    }
+  })
+  const update = { $set: {'lists.$[element].cards': newCards} }
+  try {
+    const updatedTask = await Task.findOneAndUpdate(filter, update, {
+      arrayFilters: [{'element._id': req.params.listID}],
+      new: true
+    });
+    res.status(201).json(updatedTask);
+  } catch (error) {
+    res.status(500).json(error); 
+  }
+}
+
+export const deleteTaskCard = async (req, res) => {
+  const filter = {_id: req.params.taskID};
+  let newCards;
+  
+  const task = await Task.findOne(filter)
+  task.lists.map(list => {
+    if (list._id == req.params.listID) {
+      newCards = list.cards.filter(card => card._id != req.body._id)
+    }
+  })
+  const update = { $set: {'lists.$[element].cards': newCards} }
+  try {
+    const updatedTask = await Task.findOneAndUpdate(filter, update, {
+      arrayFilters: [{'element._id': req.params.listID}],
+      new: true
+    });
+
+    res.status(201).json(updatedTask);
+  } catch (error) {
+    res.status(500).json(error); 
+  }
+}
+
 export const sort = async (req, res) => {
   const {     
     taskID,
@@ -119,17 +167,3 @@ export const sort = async (req, res) => {
     res.status(500).json(error); 
   }
 }
-
-// export const updateEvaluation = async (req, res) => {
-//   const filter = { studentID: req.params.studentID };
-//   const update = req.body;
-//   try {
-//     const updatedEvaluation = await CouncilEvaluation.findOneAndUpdate(filter, update, {
-//       new: true,
-//       upsert: true 
-//     });
-//     res.json(updatedEvaluation);
-//   } catch (error) {
-//     res.status(500).json({ message: "Something went wrong." }); 
-//   }
-// }

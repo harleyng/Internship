@@ -1,4 +1,5 @@
 import Score from '../models/score.js'
+import Student from '../models/student.js'
 import CouncilEvaluation from '../models/councilEvaluation.js'
 
 export const getEvaluation = async (req, res) => {
@@ -54,6 +55,21 @@ export const getScores = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Something went wrong." });
   }
+}
+
+export const getSupervisorScores = async (req, res) => {
+  const studentFilter = {'supervisor.email': req.body.email}
+  try {
+    const students = await Student.find(studentFilter)
+    const studentIDs = students.map(student => student.studentID)
+
+    const scoreFilter = {studentID: studentIDs}
+    const scores = await Score.find(scoreFilter);
+    
+    res.status(200).json(scores);
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  } 
 }
 
 export const createScore = async (req, res) => {

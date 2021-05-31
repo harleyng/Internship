@@ -1,4 +1,4 @@
-import { GET_SCORE_LIST, CREATE_SCORE, UPDATE_SCORE, UPDATE_EVALUATION, GET_EVALUATION } from '../constants/actionTypes';
+import { GET_SCORE_LIST, CREATE_SCORE, UPDATE_SCORE, UPDATE_EVALUATION, GET_EVALUATION, GET_SUPERVISOR_SCORE_LIST } from '../constants/actionTypes';
 import * as api from '../api/score';
 
 export const getScoreList = () => async (dispatch) => {
@@ -6,6 +6,17 @@ export const getScoreList = () => async (dispatch) => {
     const { data } = await api.getScoreList();
 
     dispatch({ type: GET_SCORE_LIST, payload: data });
+  } catch (error) {
+    console.log(error);
+  } 
+}
+
+export const getSupervisorScoreList = (supervisorEmail) => async (dispatch) => {
+  console.log(supervisorEmail)
+  try {
+    const { data } = await api.getSupervisorScoreList(supervisorEmail);
+
+    dispatch({ type: GET_SUPERVISOR_SCORE_LIST, payload: data });
   } catch (error) {
     console.log(error);
   } 

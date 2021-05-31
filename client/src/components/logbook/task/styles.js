@@ -1,9 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { lightGray } from '../../../constants/colors'
+import { lightGray } from '../../../constants/colors';
+import { drawerWidth } from '../../../constants/dimensions'
 export default makeStyles((theme) => ({
   kanbanContainer: {
     display: 'flex',
     flexDirection: 'row',
+    overflowX: 'scroll'
   },
   listContainer: {
     height: '100%',
@@ -48,5 +50,23 @@ export default makeStyles((theme) => ({
   newCardCloseButton: {
     marginLeft: 8,
     cursor: 'pointer'
+  },
+  modalContainer: {
+    width: '60vw',
+    maxWidth: '980px',
+    position: 'absolute',
+    left: '50%',
+    top: '50vh',
+    transform: 'translate(calc(-50% + 120px), -50%)'
+  },
+  modalContent: {
+    padding: theme.spacing(5)
+  }, 
+  modalMainContent: {
+    marginTop: 40
+  },
+  modalSectionIcon: {
+    verticalAlign: 'middle', 
+    marginRight: 10
   }
 }));

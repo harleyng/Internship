@@ -6,8 +6,11 @@ const taskSchema = mongoose.Schema({
     id   : String,
     title: String,
     cards: [{
-      id   : String,
-      title: String
+      id         : String,
+      title      : String,
+      description: String,
+      attachment : String,
+      comment    : String,
     }]
   }],
 })

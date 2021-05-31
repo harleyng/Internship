@@ -2,7 +2,7 @@ import express from 'express';
 
 // PLAN
 import { createPlan, getPlan, createPlanPeriod, updatePlanPeriod, deletePlanPeriod } from '../controllers/plan.js';
-import { createTask, getTask, createTaskList, createTaskCard, sort } from '../controllers/task.js';
+import { createTask, getTask, createTaskList, createTaskCard, updateTaskCard, deleteTaskCard, sort } from '../controllers/task.js';
 
 const router = express.Router();
 
@@ -18,6 +18,8 @@ router.get('/task/create/:taskID', createTask)
 router.get('/task/:taskID', getTask)
 router.post('/task/:taskID/list/create', createTaskList)
 router.post('/task/:taskID/list/:listID/card/create', createTaskCard)
+router.patch('/task/:taskID/list/:listID/card/update', updateTaskCard)
+router.patch('/task/:taskID/list/:listID/card/delete', deleteTaskCard)
 router.put('/task/sort', sort)
 
 export default router;

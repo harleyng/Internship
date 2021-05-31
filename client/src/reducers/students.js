@@ -1,8 +1,10 @@
-import { GET_STUDENT_LIST, CREATE_STUDENT } from "../constants/actionTypes";
+import { GET_STUDENT_LIST, CREATE_STUDENT, GET_SUPERVISOR_STUDENT_LIST } from "../constants/actionTypes";
 
 const students = (students = [], action) => {
   switch (action.type) {
     case GET_STUDENT_LIST:
+      return action.payload;
+    case GET_SUPERVISOR_STUDENT_LIST:
       return action.payload;
     case CREATE_STUDENT:
   return [...students, action.payload]

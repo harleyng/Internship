@@ -44,6 +44,39 @@ const RightMenu = ({ selectedRow, rows, role, mousePosition, setMousePosition, m
     handleClose();
   }
 
+  // Supervisor View Logbook
+  const handleOpenLogbook = () => {
+    selectedRow.forEach(selectedEl => {
+      window.open(`/student/${selectedEl}/logbook`)
+    })
+  }
+
+  const renderRightMenu = () => {
+    switch (role) {
+      case 'lecturer':
+        return (
+          <>
+            <MenuItem onClick={handleApprove}>Approve</MenuItem>
+            <MenuItem onClick={handleRefuse}>Refuse</MenuItem>
+          </>
+        )
+      case 'staff':
+        return (
+          <>
+            <MenuItem onClick={handleOpenProfile}>Open Profile</MenuItem>
+          </>
+        )
+      case 'supervisor':
+        return (
+          <>
+            <MenuItem onClick={handleOpenLogbook}>Open Logbook</MenuItem>
+          </>
+        )
+      default:
+        break;
+    }
+  }
+
   return (
     <Menu
       keepMounted
@@ -56,21 +89,7 @@ const RightMenu = ({ selectedRow, rows, role, mousePosition, setMousePosition, m
           : undefined
       }
     >
-      { role === 'lecturer' ? 
-        <>
-          <MenuItem onClick={handleApprove}>Approve</MenuItem>
-          <MenuItem onClick={handleRefuse}>Refuse</MenuItem>
-        </>
-       : [(
-        role === 'staff' ? 
-          <>
-            <MenuItem onClick={handleOpenProfile}>Open Profile</MenuItem>
-          </>
-         : 
-          <>
-          </>
-       )]
-      }
+      {renderRightMenu()}
     </Menu>     
   )
 }

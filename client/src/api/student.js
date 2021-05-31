@@ -7,4 +7,5 @@ export const updateProfile = (updatedData) => API.put('/student/updateProfile', 
 // Student
 export const getStudentUser = (userID) => API.get(`/student/user/${userID}`);
 export const getStudentList = () => API.get(`/student`);
+export const getSupervisorStudentList = (supervisorEmail) => API.post(`/student`, supervisorEmail)
 export const createStudent = (formData) => API.post(`/student/new`, formData);

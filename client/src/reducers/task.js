@@ -1,4 +1,4 @@
-import { CREATE_TASK_CARD, CREATE_TASK_LIST, GET_TASK, DRAG_HAPPENED } from "../constants/actionTypes";
+import { CREATE_TASK_CARD, UPDATE_TASK_CARD, DELETE_TASK_CARD, CREATE_TASK_LIST, GET_TASK, DRAG_HAPPENED } from "../constants/actionTypes";
 
 const task = (task = {}, action) => {
   switch (action.type) {
@@ -7,6 +7,10 @@ const task = (task = {}, action) => {
     case CREATE_TASK_LIST:
       return action.payload
     case CREATE_TASK_CARD:
+      return action.payload
+    case UPDATE_TASK_CARD:
+      return action.payload
+    case DELETE_TASK_CARD:
       return action.payload
     case DRAG_HAPPENED:
       const {  

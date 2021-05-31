@@ -1,20 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, CardContent, Typography } from '@material-ui/core';
 import { Draggable } from 'react-beautiful-dnd'
 
 import useStyles from './styles'
+import CardDetail from '../../../containers/logbook/task/CardDetail';
 
-const KanbanCard = ({ index, cardID, title }) => {
+const KanbanCard = ({ index, taskID, listID, cardID, cardData }) => {
   const classes = useStyles();
+  const [showTaskDetail, setShowTaskDetail] = useState(false)
+
+  const handleShowTaskDetail = () => {
+    setShowTaskDetail(true)
+  }
+  const handleCloseTaskDetail = () => {
+    setShowTaskDetail(false)
+  }
+
+
+
   return (
     <Draggable draggableId={String(cardID)} index={index}>
       {provided => (
         <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-          <Card className={classes.cardContainer}>
+          <Card className={classes.cardContainer} onClick={handleShowTaskDetail}>
             <CardContent>
-              <Typography gutterBottom>{title}</Typography>
+              <Typography gutterBottom>{cardData.title}</Typography>
             </CardContent> 
           </Card>
+          {showTaskDetail && (
+            <CardDetail 
+              showTaskDetail={showTaskDetail}
+              handleCloseTaskDetail={handleCloseTaskDetail} 
+              cardData={cardData}
+              taskID={taskID}
+              listID={listID}
+            />
+          )}
         </div>
       )}
     </Draggable>
