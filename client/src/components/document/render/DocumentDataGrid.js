@@ -3,8 +3,8 @@ import { CircularProgress } from "@material-ui/core";
 import { DataGrid } from '@material-ui/data-grid';
 import { useSelector } from 'react-redux'
 
-import { annex2, annex3_EN, annex4_EN, annex5_EN, annex6_EN } from '../../../constants/document'
-import RenderDocument from '../../../containers/document/staffHandle/RenderDocument'
+import { annex2, annex3_EN, annex4_EN, annex5_EN, annex6_EN } from '../../../setting/constants/document'
+import RenderDocument from '../../../pages/document/staffHandle/RenderDocument'
 import CustomToolBar from './CustomToolBar'
 
 const DocumentDataGrid = () => {

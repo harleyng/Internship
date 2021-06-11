@@ -1,4 +1,4 @@
-import { CREATE_DOCUMENT_MODEL, GET_DOCUMENTS ,CREATE_DOCUMENT, UPDATE_DOCUMENT } from "../constants/actionTypes";
+import { CREATE_DOCUMENT_MODEL, GET_DOCUMENTS ,CREATE_DOCUMENT, UPDATE_DOCUMENT } from "../setting/constants/actionTypes";
 
 const documents = (documents = [], action) => {
   switch (action.type) {

@@ -16,8 +16,6 @@ const ScoreDataGrid = () => {
   const dispatch = useDispatch()
   const [selectedCellParams, setSelectedCellParams] = useState(null);  
   const [mousePosition, setMousePosition] = useState(mouseInitialState);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [supervisorScore, setSupervisorScore] = useState(0)
   const score = useSelector(state => state.studentScore)
   let rows = [];
 
@@ -64,25 +62,6 @@ const ScoreDataGrid = () => {
     setSelectedCellParams(params);
   }, [])
 
-  // Supervisor Modal
-  // Comment on Info
-  const handleOpenModal = () => {
-    setModalOpen(true);
-  }
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  }
-
-  const handleSupervisorChange = (e) => {
-    setSupervisorScore(e.target.value)
-  }
-
-  const handleSupervisorSubmit = (e) => {
-    e.preventDefault();
-    dispatch(updateScore(selectedCellParams.row.studentID, {supervisor: supervisorScore}))
-    handleCloseModal();
-  }
   return (
     !rows.length ? <CircularProgress /> : (
       <div style={{ height: '90vh', width: '100%', cursor: 'context-menu' }} onContextMenu={openRightClickMenu}>
@@ -95,8 +74,7 @@ const ScoreDataGrid = () => {
             Toolbar: GridToolbar,
           }}
           />
-          <RightMenu  mousePosition={mousePosition} setMousePosition={setMousePosition} mouseInitialState={mouseInitialState} handleOpenModal={handleOpenModal} studentID={selectedCellParams?.row?.studentID} />
-          <SupervisorEvaluationModal handleSupervisorChange={handleSupervisorChange} handleSupervisorSubmit={handleSupervisorSubmit} handleCloseModal={handleCloseModal} modalOpen={modalOpen} studentID={selectedCellParams?.row?.studentID} />
+          <RightMenu  mousePosition={mousePosition} setMousePosition={setMousePosition} mouseInitialState={mouseInitialState} studentID={selectedCellParams?.row?.studentID} />
       </div>
     )
   )

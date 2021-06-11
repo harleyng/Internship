@@ -1,4 +1,4 @@
-import { CREATE_TASK_CARD, UPDATE_TASK_CARD, DELETE_TASK_CARD, CREATE_TASK_LIST, GET_TASK, DRAG_HAPPENED } from "../constants/actionTypes";
+import { CREATE_TASK_CARD, UPDATE_TASK_CARD, DELETE_TASK_CARD, CREATE_TASK_LIST, GET_TASK, DRAG_HAPPENED } from "../setting/constants/actionTypes";
 
 const task = (task = {}, action) => {
   switch (action.type) {

@@ -1,4 +1,4 @@
-import { TOGGLE } from '../constants/actionTypes';
+import { TOGGLE } from '../setting/constants/actionTypes';
 
 export const toggle = (mobileOpen) => async (dispatch) => {
   try {

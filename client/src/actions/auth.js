@@ -1,5 +1,6 @@
-import { AUTH } from '../constants/actionTypes';
+import { AUTH } from '../setting/constants/actionTypes';
 import * as api from '../api/auth';
+import { STUDENTS_PAGE } from '../setting/constants/pages';
 
 
 export const signin = (formData, history) => async (dispatch) => {
@@ -7,8 +8,14 @@ export const signin = (formData, history) => async (dispatch) => {
     const { data } = await api.signIn(formData);
 
     dispatch({ type: AUTH, data });
-
-    history.push('/');
+    console.log(data.result.role)
+    switch (data.result.role) {
+      case 'supervisor':
+        history.push(`/${STUDENTS_PAGE}/internship`);
+        break;
+      default:
+        history.push('/');
+    }
   } catch (error) {
     console.log(error);
   }

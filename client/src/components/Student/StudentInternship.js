@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
-import StudentsDataGrid from './studentDataGrid/StudentsDataGrid';
+import StudentsDataGrid from './StudentDataGrid/StudentsDataGrid';
 
 import { getStudentList, getSupervisorStudentList } from '../../actions/student'
+import StudentList from './StudentList/StudentList';
 
 const StudentInternship = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,14 @@ const StudentInternship = () => {
   }, [dispatch])
 
   return (
-    <div>
-      {/* Internship Information */}
-      <StudentsDataGrid hide={hide} role={user?.result?.role}/>
-    </div>
+    user?.result?.role === 'supervisor' ? (
+      <StudentList />
+    ) : (
+      <div>
+        {/* Internship Information */}
+        <StudentsDataGrid hide={hide} role={user?.result?.role}/>
+      </div>
+    )
   );
 }
 

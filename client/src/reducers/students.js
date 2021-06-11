@@ -1,4 +1,4 @@
-import { GET_STUDENT_LIST, CREATE_STUDENT, GET_SUPERVISOR_STUDENT_LIST } from "../constants/actionTypes";
+import { GET_STUDENT_LIST, CREATE_STUDENT, GET_SUPERVISOR_STUDENT_LIST } from "../setting/constants/actionTypes";
 
 const students = (students = [], action) => {
   switch (action.type) {

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { lightGray } from '../../../constants/colors';
-import { drawerWidth } from '../../../constants/dimensions'
+import { lightGray } from '../../../setting/constants/colors';
+import { drawerWidth } from '../../../setting/constants/dimensions'
 export default makeStyles((theme) => ({
   kanbanContainer: {
     display: 'flex',

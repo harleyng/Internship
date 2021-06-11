@@ -1,6 +1,8 @@
 import Score from '../models/score.js'
 import Student from '../models/student.js'
+import User from '../models/user.js'
 import CouncilEvaluation from '../models/councilEvaluation.js'
+import { sendEmail } from '../mailing/sendEmail.js'
 
 export const getEvaluation = async (req, res) => {
   const filter = { studentID: req.params.studentID };
@@ -57,6 +59,17 @@ export const getScores = async (req, res) => {
   }
 }
 
+export const getScore = async (req, res) => {
+  const studentID = req.params.studentID
+  try {
+    const score = await Score.find({studentID: studentID});
+
+    res.status(200).json(score)
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong." });
+  }
+}
+
 export const getSupervisorScores = async (req, res) => {
   const studentFilter = {'supervisor.email': req.body.email}
   try {
@@ -97,6 +110,14 @@ export const updateScore = async (req, res) => {
       new: true,
       upsert: true 
     });
+    
+    const evaluatedStudent = await Student.findOne(filter)
+    const evaluatedUser = await User.findOne({_id: evaluatedStudent.userID})
+    const receiver = evaluatedUser.email;
+    const title = "Your supervisor has evaluated your internship process"
+    const context = {content: `You get ${req.body.supervisor}/20 score.`}
+    sendEmail(receiver, title, context);
+
     res.json(updatedScore);
   } catch (error) {
     res.status(500).json({ message: "Something went wrong." }); 

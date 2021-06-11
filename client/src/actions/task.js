@@ -1,4 +1,4 @@
-import { CREATE_TASK, GET_TASK, CREATE_TASK_LIST, CREATE_TASK_CARD, UPDATE_TASK_CARD, DELETE_TASK_CARD, DRAG_HAPPENED } from '../constants/actionTypes';
+import { CREATE_TASK, GET_TASK, CREATE_TASK_LIST, CREATE_TASK_CARD, UPDATE_TASK_CARD, DELETE_TASK_CARD, DRAG_HAPPENED } from '../setting/constants/actionTypes';
 import * as api from '../api/task';
 
 export const createTask = (taskID) => async (dispatch) => {
@@ -41,9 +41,9 @@ export const createTaskCard = (taskID, listID, title) => async (dispatch) => {
   }
 }
 
-export const updateTaskCard = (taskID, listID, cardData) => async (dispatch) => {
+export const updateTaskCard = (studentID, taskID, listID, cardData) => async (dispatch) => {
   try {
-    const { data } = await api.updateTaskCard(taskID, listID, cardData);
+    const { data } = await api.updateTaskCard(studentID, taskID, listID, cardData);
 
     dispatch({ type: UPDATE_TASK_CARD, payload: data})
   } catch (error) {

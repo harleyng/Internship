@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { FormControl, FormLabel, FormGroup, FormControlLabel, Switch } from "@material-ui/core";
 
-import { annex2, annex3_EN, annex4_EN, annex5_EN, annex6_EN } from '../../../constants/document'
+import { annex2, annex3_EN, annex4_EN, annex5_EN, annex6_EN } from '../../../setting/constants/document'
 import useStyles from './styles'
 
 const DocumentSwitch = ({ documentMode, handleChange }) => {

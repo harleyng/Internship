@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { getProfile } from '../../../actions/student';
 import { getEvaluation } from '../../../actions/score'
-import TabPanel from '../../../containers/student/evaluation/TabPanel';
+import TabPanel from '../../../pages/student/evaluation/TabPanel';
 import DefenseEvaluation from './DefenseEvaluation';
 import ReportEvaluation from './ReportEvaluation';
 

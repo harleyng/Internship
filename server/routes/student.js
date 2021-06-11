@@ -10,7 +10,7 @@ router.get('/user/:userID', getStudentUser);
 router.post('/new', createStudent);
 
 router.post('/getProfile', getProfile);
-router.put('/updateProfile', updateProfile);
+router.patch('/updateProfile', updateProfile);
 
 
 export default router;

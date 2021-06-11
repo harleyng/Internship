@@ -1,4 +1,4 @@
-import { GET_STUDENT_USER } from "../constants/actionTypes";
+import { GET_STUDENT_USER } from "../setting/constants/actionTypes";
 
 const studentUser = (studentUser = [], action) => {
   switch (action.type) {

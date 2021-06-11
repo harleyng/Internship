@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import DefenseForm from '../../../containers/student/evaluation/DefenseForm';
+import DefenseForm from '../../../pages/student/evaluation/DefenseForm';
 import { updateEvaluation, updateScore } from '../../../actions/score'
 
 const DefenseEvaluation = ({ studentID, evaluationData, setEvaluationData, total, setTotal }) => {  

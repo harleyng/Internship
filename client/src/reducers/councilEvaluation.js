@@ -1,4 +1,4 @@
-import { GET_EVALUATION, UPDATE_EVALUATION } from "../constants/actionTypes";
+import { GET_EVALUATION, UPDATE_EVALUATION } from "../setting/constants/actionTypes";
 
 const councilEvaluation = (evaluation = {}, action) => {
   switch (action.type) {

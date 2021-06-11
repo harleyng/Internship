@@ -1,5 +1,6 @@
 import Student from '../models/student.js'
 import User from '../models/user.js'
+import { sendEmail } from '../mailing/sendEmail.js'
 
 export const getStudentUser = async (req, res) => {
   const { id } = req.params
@@ -59,10 +60,10 @@ export const createStudent = async (req, res) => {
 }
 
 export const getProfile = async (req, res) => {
-  const id = req.body;
+  const filter = req.body;
   try {
-    if (id) {
-      const existingStudent = await Student.findOne(id);
+    if (filter) {
+      const existingStudent = await Student.findOne(filter);
       res.status(201).json(existingStudent);
     }
 
@@ -75,12 +76,25 @@ export const getProfile = async (req, res) => {
 export const updateProfile = async (req, res) => {
   const update = req.body;
   const filter = { studentID: req.body.studentID };
- 
+  console.log(req.body)
   try {
     const updatedProfile = await Student.findOneAndUpdate(filter, update, {
       new: true,
-      upsert: true 
     });
+
+    const evaluatedStudent = await Student.findOne(filter)
+    const evaluatedUser = await User.findOne({_id: evaluatedStudent.userID})
+    const receiver = evaluatedUser.email;
+    if (req.body.internship?.topicStatus && req.body.internship?.topicStatus !== 'Pending') {
+      const title = "Your topic has been reviewed"
+      const context = {content: `You are ${req.body.internship.topicStatus}.`}
+      sendEmail(receiver, title, context);
+    }
+    if (req.body.comment) {
+      const title = "There are some problem with your internship information"
+      const context = {content: `${req.body.comment[req.body.comment.length - 1]}`}
+      sendEmail(receiver, title, context);
+    }
 
     res.json(updatedProfile);
   } catch (error) {

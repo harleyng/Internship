@@ -1,4 +1,7 @@
+import { sendEmail } from '../mailing/sendEmail.js';
 import Task from '../models/task.js'
+import Student from '../models/student.js'
+import User from '../models/user.js'
 
 export const createTask = async (req, res) => {
   const taskID = req.params.taskID;
@@ -86,6 +89,16 @@ export const updateTaskCard = async (req, res) => {
       arrayFilters: [{'element._id': req.params.listID}],
       new: true
     });
+
+    if (req.body.comment) {
+      const evaluatedStudent = await Student.findOne({ studentID: req.params.studentID })
+      const evaluatedUser = await User.findOne({_id: evaluatedStudent.userID})
+      const receiver = evaluatedUser.email;
+      const title = "Your supervisor comment on your task"
+      const context = {content: `${req.body.title}: ${req.body.comment}`}
+      sendEmail(receiver, title, context)
+    }
+
     res.status(201).json(updatedTask);
   } catch (error) {
     res.status(500).json(error); 

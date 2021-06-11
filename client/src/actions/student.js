@@ -1,4 +1,4 @@
-import { GET_PROFILE, UPDATE_PROFILE, CREATE_STUDENT, GET_STUDENT_LIST, GET_STUDENT_USER, GET_SUPERVISOR_STUDENT_LIST } from '../constants/actionTypes';
+import { GET_PROFILE, UPDATE_PROFILE, CREATE_STUDENT, GET_STUDENT_LIST, GET_STUDENT_USER, GET_SUPERVISOR_STUDENT_LIST } from '../setting/constants/actionTypes';
 import * as api from '../api/student';
 
 export const createStudent = (formData, history) => async (dispatch) => {
@@ -58,7 +58,6 @@ export const updateProfile = (formData) => async (dispatch) => {
   try {
     const { data } = await api.updateProfile(formData);
     dispatch({ type: UPDATE_PROFILE, payload: data });
-
   } catch (error) {
     console.log(error);
   }

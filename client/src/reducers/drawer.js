@@ -1,4 +1,4 @@
-import { TOGGLE } from '../constants/actionTypes'
+import { TOGGLE } from "../setting/constants/actionTypes"
 
 const drawerReducer = (mobileOpen = false, action) => {
   switch (action.type) {

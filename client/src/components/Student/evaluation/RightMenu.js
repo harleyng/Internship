@@ -2,7 +2,7 @@ import React from 'react'
 import { Menu, MenuItem } from '@material-ui/core';
 
 
-const RightMenu = ({ studentID, mousePosition, setMousePosition, mouseInitialState, handleOpenModal }) => {
+const RightMenu = ({ studentID, mousePosition, setMousePosition, mouseInitialState }) => {
   const role = JSON.parse(localStorage.getItem('profile'))?.result?.role;
 
   const handleClose = () => {
@@ -12,11 +12,6 @@ const RightMenu = ({ studentID, mousePosition, setMousePosition, mouseInitialSta
   const handleCouncilEvaluation = () => {
     window.open(`/student/${studentID}/council-evaluate`)
     handleClose()
-  }
-
-  const handleSupervisorEvaluation = () => {
-    handleOpenModal();
-    handleClose();
   }
 
   return (
@@ -31,14 +26,7 @@ const RightMenu = ({ studentID, mousePosition, setMousePosition, mouseInitialSta
           : undefined
       }
     >
-      { role === 'council' ? 
-        <>
-          <MenuItem onClick={handleCouncilEvaluation}>Evaluate Student</MenuItem>
-        </>
-        : 
-        <>
-          <MenuItem onClick={handleSupervisorEvaluation}>Evaluate Student</MenuItem>
-        </>
+        <MenuItem onClick={handleCouncilEvaluation}>Evaluate Student</MenuItem>
       }
     </Menu>     
   )

@@ -18,7 +18,7 @@ router.get('/task/create/:taskID', createTask)
 router.get('/task/:taskID', getTask)
 router.post('/task/:taskID/list/create', createTaskList)
 router.post('/task/:taskID/list/:listID/card/create', createTaskCard)
-router.patch('/task/:taskID/list/:listID/card/update', updateTaskCard)
+router.patch('/:studentID/task/:taskID/list/:listID/card/update', updateTaskCard)
 router.patch('/task/:taskID/list/:listID/card/delete', deleteTaskCard)
 router.put('/task/sort', sort)
 

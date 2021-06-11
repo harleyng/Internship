@@ -1,6 +1,9 @@
 body {
   background-color: rgba(135, 135, 146, .2);
 }
+.icon000 {
+  color: #eee !important;
+}
 .icon100 {
   color: rgba(238, 238, 238, 0.7) !important; /* lightGray */
 }
@@ -13,4 +16,7 @@ body {
 }
 .Mui-checked {
   color: rgb(71, 130, 218) !important;
+}
+.home-view .MuiButtonBase-root {
+  margin-right: 40px;
 }

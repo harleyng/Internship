@@ -1,4 +1,4 @@
-import { CREATE_PLAN_PERIOD, DELETE_PLAN_PERIOD, GET_PLAN, UPDATE_PLAN_PERIOD } from "../constants/actionTypes";
+import { CREATE_PLAN_PERIOD, DELETE_PLAN_PERIOD, GET_PLAN, UPDATE_PLAN_PERIOD } from "../setting/constants/actionTypes";
 
 const plan = (plan = {}, action) => {
   switch (action.type) {

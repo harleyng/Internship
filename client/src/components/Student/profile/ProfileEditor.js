@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Button, Icon } from '@material-ui/core'
+import { Grid, Button, Icon, Snackbar, IconButton } from '@material-ui/core'
+import { Close } from '@material-ui/icons';
 import { useDispatch } from 'react-redux'
 
 import MainForm from './MainForm'
@@ -56,12 +57,27 @@ const ProfileEditor = (props) => {
   const [HandlingSection, setHandlingSection] = useState(null);
   const [formData, setFormData] = useState(initialState);
   const [editable, setEditable] = useState(true)
+  const [snackPack, setSnackPack] = useState([]);
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
+  const [snackBarMessage, setSnackBarMessage] = useState(undefined);
   const studentID = props.match.params.studentID;
   const user = JSON.parse(localStorage.getItem('profile'));
 
   useEffect(() => { 
     dispatch(getProfile({studentID: studentID})); 
   }, [dispatch])
+
+  useEffect(() => {
+    if (snackPack.length && !snackBarMessage) {
+      // Set a new snack when we don't have an active one
+      setSnackBarMessage({ ...snackPack[0] });
+      setSnackPack((prev) => prev.slice(1));
+      setSnackBarOpen(true);
+    } else if (snackPack.length && snackBarMessage && snackBarOpen) {
+      // Close an active snack when a new one is added
+      setSnackBarOpen(false);
+    }
+  }, [snackPack, snackBarMessage])
 
   const handleChange = (e) => {
     if (e.target?.name.includes('supervisor')) {
@@ -106,10 +122,19 @@ const ProfileEditor = (props) => {
     e.preventDefault();
     // console.log(formData)
     dispatch(updateProfile({...formData, studentID: studentID}))
+      .then((result) => {
+        setSnackPack(((prev) => [...prev, { message: 'You have updated your profile successfully', key: new Date().getTime() }]));
+      })
   }
 
   const handleEdit = () => {
     setEditable(!editable);
+
+    if (editable) {
+      setSnackPack(((prev) => [...prev, { message: 'You are able to edit now', key: new Date().getTime() }]));
+    } else {
+      setSnackPack(((prev) => [...prev, { message: 'You can not edit anything now', key: new Date().getTime() }]));
+    }
   }
 
   const clear = () => {
@@ -117,32 +142,70 @@ const ProfileEditor = (props) => {
     // console.log(formData)
   }
 
+  const handleCloseSnackBar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackBarOpen(false);
+  }
+
+  const handleExitSnackBar = () => {
+    setSnackBarMessage(undefined);
+  };
+
+
   return (
-    <Grid container justify="center">
-    <Grid item xs={12} sm={2}>
-      <SideNavigator HandlingSection={HandlingSection} />
-    </Grid>
-    <Grid item xs={12} sm={9} md={8} lg={6} className={editable ? `${classes.avoidClick}` : '' }>
-      <MainForm handleClick={handleClick} handleChange={handleChange} handleDateChange={handleDateChange} formData={formData} setFormData={setFormData}/>
-    </Grid>
-    {user?.result.role === 'student' ? (
-      <>
-        <Grid item xs={12} sm ={1} className={classes.studentProfileSubmitButton}>
-          <div className={classes.SideSticky}>
-            <Button variant="contained" className={classes.ProfileHandlerButton} endIcon={<Icon>edit</Icon>} onClick={handleEdit}>
-              {editable ? 'Edit' : 'Done'}
-            </Button>
-            <Button variant="contained" className={classes.ProfileHandlerButton} endIcon={<Icon>delete</Icon>} onClick={clear}>
-              Clear
-            </Button>
-            <Button variant="contained" className={classes.ProfileHandlerButton} endIcon={<Icon>send</Icon>} onClick={handleSubmit}>
-              Submit
-            </Button>
-          </div>
+    <> 
+      <Grid container justify="center">
+        <Grid item xs={12} sm={2}>
+          <SideNavigator HandlingSection={HandlingSection} />
         </Grid>
-      </>
-    ) : null}
-    </Grid>
+        <Grid item xs={12} sm={9} md={8} lg={6} className={editable ? `${classes.avoidClick}` : '' }>
+          <MainForm handleClick={handleClick} handleChange={handleChange} handleDateChange={handleDateChange} formData={formData} setFormData={setFormData}/>
+        </Grid>
+        {user?.result.role === 'student' ? (
+          <>
+            <Grid item xs={12} sm ={1} className={classes.studentProfileSubmitButton}>
+              <div className={classes.SideSticky}>
+                <Button variant="contained" className={classes.ProfileHandlerButton} endIcon={<Icon>edit</Icon>} onClick={handleEdit}>
+                  {editable ? 'Edit' : 'Done'}
+                </Button>
+                <Button variant="contained" className={`${classes.ProfileHandlerButton} ${editable ? `${classes.avoidClick}` : '' }`} endIcon={<Icon>delete</Icon>} onClick={clear}>
+                  Clear
+                </Button>
+                <Button variant="contained" className={`${classes.ProfileHandlerButton} ${editable ? `${classes.avoidClick}` : '' }`} endIcon={<Icon>send</Icon>} onClick={handleSubmit}>
+                  Submit
+                </Button>
+              </div>
+            </Grid>
+          </>
+        ) : null}
+      </Grid>
+      <Snackbar
+        key={snackBarMessage ? snackBarMessage.key : undefined}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        open={snackBarOpen}
+        autoHideDuration={2000}
+        onClose={handleCloseSnackBar}
+        onExited={handleExitSnackBar}
+        message={snackBarMessage ? snackBarMessage.message : undefined}
+        action={
+          <React.Fragment>
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              onClick={handleCloseSnackBar}
+            >
+              <Close />
+            </IconButton>
+          </React.Fragment>
+        }
+        />
+    </>
   )
 }
 

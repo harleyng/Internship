@@ -68,12 +68,13 @@ const StudentsDataGrid = ({ hide, role, staffToolBar }) => {
         supervisor_bankAccount_No: student.supervisor?.bankAccount?.No || 'x',
         supervisor_bankAccount_branch: student.supervisor?.bankAccount?.branch || 'x',
         internship_topic: student.internship?.topic,
+        internship_description: student.internship?.description, 
         internship_objective: student.internship?.objective,
         internship_outcome: student.internship?.outcome,
         internship_location: student.internship?.location,
         internship_host: student.internship?.host,
         internship_topicStatus: student.internship?.topicStatus,
-        internship_updatedAt: moment(student.internship?.updatedAt).fromNow(),
+        internship_updatedAt: student.internship?.updatedAt,
         comment: student.comment,
       })
     })
@@ -140,7 +141,7 @@ const StudentsDataGrid = ({ hide, role, staffToolBar }) => {
           onSelectionModelChange={(e) => {
             setSelectedRow(e.selectionModel)
           }}/>
-        <RightMenu selectedRow={selectedRow} role={role} mousePosition={mousePosition} setMousePosition={setMousePosition} mouseInitialState={mouseInitialState}/>
+        <RightMenu selectedRow={selectedRow} rows={rows} role={role} mousePosition={mousePosition} setMousePosition={setMousePosition} mouseInitialState={mouseInitialState}/>
       </div>
     )
   )

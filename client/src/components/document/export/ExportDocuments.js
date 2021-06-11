@@ -5,11 +5,11 @@ import html2pdf from 'html2pdf.js'
 
 import { getStudentUser } from '../../../actions/student';
 import DocumentSwitch from './DocumentSwitch'
-import Annex2 from '../../../containers/document/Annex2';
-import Annex3 from '../../../containers/document/Annex3';
-import Annex4 from '../../../containers/document/Annex4';
-import Annex5 from '../../../containers/document/Annex5';
-import Annex6 from '../../../containers/document/Annex6';
+import Annex2 from '../../../pages/document/Annex2';
+import Annex3 from '../../../pages/document/Annex3';
+import Annex4 from '../../../pages/document/Annex4';
+import Annex5 from '../../../pages/document/Annex5';
+import Annex6 from '../../../pages/document/Annex6';
 
 const ExportDocuments = (props) => {
   const dispatch = useDispatch();

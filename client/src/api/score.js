@@ -1,5 +1,6 @@
 import API from './index'
 
+export const getScore = (studentID) => API.get(`/score/detail/${studentID}`)
 export const getScoreList = () => API.get(`/score`)
 export const getSupervisorScoreList = (supervisorEmail) => API.post(`/score`, supervisorEmail)
 export const createScore = (studentID) => API.get(`/score/${studentID}`)

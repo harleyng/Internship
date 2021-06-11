@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { GridToolbarContainer, GridDensitySelector, GridFilterToolbarButton, GridColumnsToolbarButton  } from '@material-ui/data-grid';
-import { Button, Divider } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 import { updateProfile } from '../../../actions/student'
-import CommentModal from '../../../containers/student/studentDataGrid/CommentModal';
+import CommentModal from '../../../pages/student/StudentList/studentDataGrid/CommentModal';
+import StaffToolBar from './StaffToolBar';
 
 const CustomToolbar = ({ selectedCellParams, modalOpen, setModalOpen, staffToolBar }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [commentData, setCommentData] = useState([])
   const students = useSelector(state => state.students);
   const headerName = selectedCellParams?.colDef?.headerName;
@@ -37,10 +35,6 @@ const CustomToolbar = ({ selectedCellParams, modalOpen, setModalOpen, staffToolB
     handleCloseModal();
   }
 
-  // Export documents
-  const exportDocuments = () => {
-    history.push(`/export/${studentID}`)
-  }
   return (
     <>
     <GridToolbarContainer>
@@ -48,20 +42,7 @@ const CustomToolbar = ({ selectedCellParams, modalOpen, setModalOpen, staffToolB
       <GridFilterToolbarButton style={{margin: '0px 10px'}} />
       <GridDensitySelector/>
       {staffToolBar ? (
-        <>
-          <Divider orientation="vertical" flexItem style={{margin: '0 30px'}} />
-          <Button
-            onMouseDown={handleOpenModal}
-            disabled={!selectedCellParams}>
-            Comment
-          </Button>
-          <Button
-            style={{margin: '0 10px'}} 
-            onMouseDown={exportDocuments}
-            disabled={!selectedCellParams}>
-            Export
-          </Button>
-        </>
+        <StaffToolBar selectedCellParams={selectedCellParams} handleOpenModal={handleOpenModal}/>
       ) : null}
 
     </GridToolbarContainer>

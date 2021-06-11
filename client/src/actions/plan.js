@@ -1,4 +1,4 @@
-import { CREATE_PLAN, CREATE_PLAN_PERIOD, GET_PLAN, UPDATE_PLAN_PERIOD, DELETE_PLAN_PERIOD } from '../constants/actionTypes';
+import { CREATE_PLAN, CREATE_PLAN_PERIOD, GET_PLAN, UPDATE_PLAN_PERIOD, DELETE_PLAN_PERIOD } from '../setting/constants/actionTypes';
 import * as api from '../api/plan';
 
 export const createPlan = (studentID) => async (dispatch) => {

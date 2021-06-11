@@ -1,18 +1,16 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 
-import NavBar from '../containers/layouts/NavBar/NavBar'
-import SideBar from '../components/layouts/SideBar/SideBar'
+import NavBar from '../components/layouts/NavBar/NavBar';
 
 const useStyles = makeStyles((theme) => ({
   MainContent: {
-    [theme.breakpoints.up('sm')]: {
-      maxWidth: `calc(100vw - 240px)`,
-    },
+    width: '100vw',
     maxWidth: '100vw',
     minWidth: `320px`,
-    marginLeft: 'auto',
-    padding: theme.spacing(4),
+    margin: 'auto',
+    textAlign: 'center',
+    padding: theme.spacing(10),
   }
 }))
 const MasterLayout = (props) => {
@@ -21,7 +19,6 @@ const MasterLayout = (props) => {
   return (
     <div>
       <NavBar />
-      <SideBar />
       <main className={classes.MainContent}>
         {props.children}
       </main>

@@ -1,7 +1,9 @@
-import { GET_SCORE_LIST, CREATE_SCORE, UPDATE_SCORE, GET_SUPERVISOR_SCORE_LIST } from "../constants/actionTypes";
+import { GET_SCORE_LIST, CREATE_SCORE, UPDATE_SCORE, GET_SUPERVISOR_SCORE_LIST, GET_SCORE } from "../setting/constants/actionTypes";
 
 const studentScore = (score = [], action) => {
   switch (action.type) {
+    case GET_SCORE:
+      return action.payload
     case GET_SCORE_LIST:
       return action.payload
     case GET_SUPERVISOR_SCORE_LIST:

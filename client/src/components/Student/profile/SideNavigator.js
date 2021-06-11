@@ -4,13 +4,12 @@ import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineC
 import { useSelector } from 'react-redux'
 
 import useStyles from './styles.js'
-import { first, second, third, fourth } from '../../../constants/profileSection'
+import { first, second, third, fourth } from '../../../setting/constants/profileSection'
 
 const SideNavigator = ({ HandlingSection }) => {
   const classes = useStyles();
   const profile = useSelector(state => state.studentProfile)
   const SectionList = [first, second, third, fourth];
-  // console.log(profile.comment)
   return (
     <div className={classes.SideSticky}>
       <Timeline align="right">

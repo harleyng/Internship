@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { GridToolbarContainer  } from '@material-ui/data-grid';
-import { IconButton } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import { Add, Edit } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
 
-import DocumentModal from '../../../containers/document/staffHandle/DocumentModal'
+import DocumentModal from '../../../pages/document/staffHandle/DocumentModal'
 import { createDocument, updateDocument } from '../../../actions/document'
 
 const CustomToolbar = ({ selectedCellParams, selectedRow, setModalOpen, modalOpen }) => {
@@ -52,17 +52,21 @@ const CustomToolbar = ({ selectedCellParams, selectedRow, setModalOpen, modalOpe
   return (
     <>
       <GridToolbarContainer>
-        <IconButton
+        <Button
           onMouseDown={() => handleOpenModal('Create')}
-          disabled={!selectedCellParams}>
-            <Add />
-        </IconButton>
-        <IconButton
+          disabled={!selectedCellParams}
+          startIcon={<Add />}
+        >
+          Create new document
+        </Button>
+        <Button
           style={{margin: '0 10px'}} 
           onMouseDown={() => handleOpenModal('Edit')}
-          disabled={!selectedCellParams}>
-            <Edit />
-        </IconButton>
+          disabled={!selectedCellParams}
+          startIcon={<Edit />}
+        >
+          Modify document
+        </Button>
       </GridToolbarContainer>
       <DocumentModal handleChange={handleChange} handleSubmit={handleSubmit} handleCloseModal={handleCloseModal} modalOpen={modalOpen} actionType={actionType} documentData={documentData}/>
     </>

@@ -1,5 +1,6 @@
 import renderCellExpand from '../renderCellExpand'
-import TopicStatus from '../../../../containers/student/studentDataGrid/TopicStatus'
+import TopicStatus from '../../../../pages/student/StudentList/studentDataGrid/TopicStatus'
+import moment from 'moment';
 
 export const defaultColumns = [
   { field: 'studentID', headerName: 'Student ID', width: 130, renderCell: renderCellExpand },
@@ -48,7 +49,11 @@ export const defaultColumns = [
       }
     },
   },
-  { field: 'internship_updatedAt', headerName: 'Last Update', width: 200, renderCell: renderCellExpand },
+  { field: 'internship_updatedAt', headerName: 'Last Update', width: 200, 
+    renderCell: (params) => { 
+      return moment(params.value).fromNow()
+    },
+  },
   { field: 'comment', headerName: 'Note', width: 300, renderCell: renderCellExpand},
 ]
   

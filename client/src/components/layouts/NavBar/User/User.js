@@ -48,7 +48,8 @@ const User = () => {
       {user ? (
         <div>
           <IconButton 
-          className='icon200'
+          className='icon000'
+          style={{height: '100%'}}
           aria-label="account of current user"
           aria-controls="menu-appbar"
           aria-haspopup="true"

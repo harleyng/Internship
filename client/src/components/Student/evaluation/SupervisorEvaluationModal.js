@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     left: '50%',
     top: '50%',
-    transform: 'translate(calc(-50% + 120px), 0)'
+    transform: 'translate(-50%, -50%)'
   },
   modalContent: {
     padding: theme.spacing(5)

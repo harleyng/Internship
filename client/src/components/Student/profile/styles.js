@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { primary } from '../../../constants/colors'
+import { primary } from '../../../setting/constants/colors'
 export default makeStyles((theme) => ({
   TimelineContent: {
     textTransform: 'capitalize',

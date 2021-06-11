@@ -7,7 +7,7 @@ import KanbanList from './KanbanList'
 import KanbanActionButton from './KanbanActionButton'
 import { sort } from '../../../actions/task'
 
-const Kanban = ({taskID, page}) => {
+const Kanban = ({studentID, taskID, page}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const task = useSelector(state => state.task)
@@ -43,7 +43,7 @@ const Kanban = ({taskID, page}) => {
               {lists?.length ? (
                 <>
                   {lists.map((list, index) => (
-                    <KanbanList key={list._id} index={index} listID={list._id} title={list.title} cards={list.cards} taskID={taskID} />
+                    <KanbanList key={list._id} index={index} studentID={studentID} listID={list._id} title={list.title} cards={list.cards} taskID={taskID} />
                   ))}
                 </>
               ) : null}

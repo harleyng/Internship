@@ -1,5 +1,15 @@
-import { GET_SCORE_LIST, CREATE_SCORE, UPDATE_SCORE, UPDATE_EVALUATION, GET_EVALUATION, GET_SUPERVISOR_SCORE_LIST } from '../constants/actionTypes';
+import { GET_SCORE_LIST, CREATE_SCORE, UPDATE_SCORE, UPDATE_EVALUATION, GET_EVALUATION, GET_SUPERVISOR_SCORE_LIST, GET_SCORE } from '../setting/constants/actionTypes';
 import * as api from '../api/score';
+
+export const getScore = (studentID) => async (dispatch) => {
+  try {
+    const { data } = await api.getScore(studentID);
+
+    dispatch({ type: GET_SCORE, payload: data });
+  } catch (error) {
+    console.log(error);
+  } 
+}
 
 export const getScoreList = () => async (dispatch) => {
   try {

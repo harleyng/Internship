@@ -25,7 +25,7 @@ const Logbook = (props) => {
     <Grid>
       <Plan studentID={studentID} setPage={setPage} page={page} setTaskID={setTaskID}/>
       {!taskID ? <CircularProgress /> : (
-        <Kanban taskID={taskID} page={page}/>
+        <Kanban studentID={studentID} taskID={taskID} page={page}/>
       )}
 
     </Grid>

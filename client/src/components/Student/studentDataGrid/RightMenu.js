@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
-import { Menu, MenuItem } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import { Menu, MenuItem } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 
-import { updateProfile } from '../../../actions/student'
+import { updateProfile } from "../../../actions/student";
 
-const RightMenu = ({ selectedRow, rows, role, mousePosition, setMousePosition, mouseInitialState }) => {
+const RightMenu = ({
+  selectedRow,
+  rows,
+  role,
+  mousePosition,
+  setMousePosition,
+  mouseInitialState,
+}) => {
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -13,69 +20,68 @@ const RightMenu = ({ selectedRow, rows, role, mousePosition, setMousePosition, m
 
   // Lecturer Topic Review
   const handleApprove = () => {
-    selectedRow.forEach(selectedEl => {
-      rows.forEach(rowEl => {
+    selectedRow.forEach((selectedEl) => {
+      rows.forEach((rowEl) => {
         if (rowEl.id === selectedEl) {
-          dispatch(updateProfile({studentID: rowEl.studentID, internship: {topic: rowEl.topic, topicStatus: 'Approved'}}))
+          console.log(rowEl);
+          dispatch(
+            updateProfile({
+              studentID: rowEl.studentID,
+              internship: {
+                topic: rowEl.internship_topic,
+                topicStatus: "Approved",
+                description: rowEl.internship_description,
+                objective: rowEl.internship_objective,
+                outcome: rowEl.internship_outcome,
+                host: rowEl.internship_host,
+                location: rowEl.internship_location,
+                updatedAt: rowEl.internship_updatedAt,
+              },
+            })
+          );
         }
-      })
-    })
+      });
+    });
     handleClose();
-    document.location.reload();
-  }
+    // document.location.reload();
+  };
 
   const handleRefuse = () => {
-    selectedRow.forEach(selectedEl => {
-      rows.forEach(rowEl => {
+    selectedRow.forEach((selectedEl) => {
+      rows.forEach((rowEl) => {
         if (rowEl.id === selectedEl) {
-          dispatch(updateProfile({studentID: rowEl.studentID, internship: {topic: rowEl.topic, topicStatus: 'Refused'}}))
+          dispatch(
+            updateProfile({
+              studentID: rowEl.studentID,
+              internship: {
+                topic: rowEl.internship_topic,
+                topicStatus: "Refused",
+                description: rowEl.internship_description,
+                objective: rowEl.internship_objective,
+                outcome: rowEl.internship_outcome,
+                host: rowEl.internship_host,
+                location: rowEl.internship_location,
+                updatedAt: rowEl.internship_updatedAt,
+              },
+            })
+          );
         }
-      })
-    })
+      });
+    });
     handleClose();
-    document.location.reload();
-  }
-
-  // Staff View Student Profile
-  const handleOpenProfile = () => {
-    selectedRow.forEach(selectedEl => {
-      window.open(`/student/${selectedEl}`)
-    })
-    handleClose();
-  }
-
-  // Supervisor View Logbook
-  const handleOpenLogbook = () => {
-    selectedRow.forEach(selectedEl => {
-      window.open(`/student/${selectedEl}/logbook`)
-    })
-  }
+    // document.location.reload();
+  };
 
   const renderRightMenu = () => {
-    switch (role) {
-      case 'lecturer':
-        return (
-          <>
-            <MenuItem onClick={handleApprove}>Approve</MenuItem>
-            <MenuItem onClick={handleRefuse}>Refuse</MenuItem>
-          </>
-        )
-      case 'staff':
-        return (
-          <>
-            <MenuItem onClick={handleOpenProfile}>Open Profile</MenuItem>
-          </>
-        )
-      case 'supervisor':
-        return (
-          <>
-            <MenuItem onClick={handleOpenLogbook}>Open Logbook</MenuItem>
-          </>
-        )
-      default:
-        break;
+    if (role === 'lecturer') {
+      return (
+        <>
+          <MenuItem onClick={handleApprove}>Approve</MenuItem>
+          <MenuItem onClick={handleRefuse}>Refuse</MenuItem>
+        </>
+      );
     }
-  }
+  };
 
   return (
     <Menu
@@ -90,8 +96,8 @@ const RightMenu = ({ selectedRow, rows, role, mousePosition, setMousePosition, m
       }
     >
       {renderRightMenu()}
-    </Menu>     
-  )
-}
+    </Menu>
+  );
+};
 
-export default RightMenu
+export default RightMenu;

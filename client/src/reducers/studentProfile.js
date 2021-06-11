@@ -1,5 +1,4 @@
-import { GET_PROFILE, UPDATE_PROFILE } from '../constants/actionTypes'
-
+import { GET_PROFILE, UPDATE_PROFILE } from "../setting/constants/actionTypes"
 const studentProfile = (profile = [], action) => {
   switch (action.type) {
     case GET_PROFILE:

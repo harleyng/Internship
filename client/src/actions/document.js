@@ -1,4 +1,4 @@
-import { GET_DOCUMENTS, CREATE_DOCUMENT_MODEL, CREATE_DOCUMENT, UPDATE_DOCUMENT } from '../constants/actionTypes'; 
+import { GET_DOCUMENTS, CREATE_DOCUMENT_MODEL, CREATE_DOCUMENT, UPDATE_DOCUMENT } from '../setting/constants/actionTypes'; 
 import * as api from '../api/document';
 
 export const createDocumentModel = (studentID) => async (dispatch) => {
