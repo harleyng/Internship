@@ -11,6 +11,12 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     textAlign: 'center',
     padding: theme.spacing(10),
+    [theme.breakpoints.up('md')]: {
+      padding: '60px 160px',
+    },
+    [theme.breakpoints.up('xl')]: {
+      padding: '100px 240px',
+    },
   }
 }))
 const MasterLayout = (props) => {

@@ -6,7 +6,7 @@ import MasterLayout from './layouts/MasterLayout'
 import AuthLayout from './layouts/AuthLayout'
 import Auth from './components/auth/Auth'
 import NotFound from './pages/NotFound'
-import { DOCUMENTS_PAGE, STUDENTS_PAGE } from './setting/constants/pages'
+import { DOCUMENTS_PAGE, OPPORTUNITIES_PAGE, STUDENTS_PAGE } from './setting/constants/pages'
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
         <Route exat path="/auth">
           <Route exact path="/auth" component={Auth} />
         </Route>
-        <Route exact path={[`/${STUDENTS_PAGE}/:path?/:path?`, `/${DOCUMENTS_PAGE}/:path?/:path?`, '/']}>
+        <Route exact path={[`/${STUDENTS_PAGE}/:path?/:path?`, `/${DOCUMENTS_PAGE}/:path?/:path?`, `/${OPPORTUNITIES_PAGE}/:path?/:path?`, '/']}>
           <MasterLayout>
             <Switch>
             {routes.map((route, index) => (

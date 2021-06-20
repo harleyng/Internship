@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import User from './User/User'
 import logo from '../../../assets/img/logo-blue.png';
-import { DOCUMENTS_PAGE, STUDENTS_PAGE } from '../../../setting/constants/pages'
+import { DOCUMENTS_PAGE, OPPORTUNITIES_PAGE, STUDENTS_PAGE } from '../../../setting/constants/pages'
 import { NavbarItem } from './NavbarItem'
 
 const NavBar = () => {
@@ -30,6 +30,7 @@ const NavBar = () => {
       case 'student':
         return (
           <List className={classes.navBarList}>
+            <NavbarItem title='Internship Opportunities' path={`/${OPPORTUNITIES_PAGE}`} />
             <NavbarItem title='Your Profile' path={accessProfile()} />
             <NavbarItem title='Logbook' path={accessLogbook()} />
           </List>
@@ -43,6 +44,7 @@ const NavBar = () => {
       case 'staff':
         return (
           <List className={classes.navBarList}>
+            <NavbarItem title='Internship Opportunities' path={`/${OPPORTUNITIES_PAGE}`} />
             <NavbarItem title='Student' path={`/${STUDENTS_PAGE}`} />
             <NavbarItem title='Document' path={`/${DOCUMENTS_PAGE}`} />
           </List>

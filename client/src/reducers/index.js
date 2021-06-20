@@ -10,6 +10,7 @@ import studentScore from './studentScore'
 import councilEvaluation from './councilEvaluation'
 import plan from './plan'
 import task from './task'
+import opportunities from './opportunity'
 
 export default combineReducers({
   auth, // general
@@ -18,4 +19,5 @@ export default combineReducers({
   documents, // document
   studentScore, councilEvaluation,  // score
   plan, task, // Plan & task
+  opportunities
 })

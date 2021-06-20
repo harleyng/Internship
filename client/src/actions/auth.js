@@ -1,6 +1,8 @@
-import { AUTH } from '../setting/constants/actionTypes';
+import { AUTH, GET_PROFILE } from '../setting/constants/actionTypes';
 import * as api from '../api/auth';
-import { STUDENTS_PAGE } from '../setting/constants/pages';
+import { getProfile } from '../api/student';
+import { OPPORTUNITIES_PAGE, STUDENTS_PAGE } from '../setting/constants/pages';
+import axios from 'axios';
 
 
 export const signin = (formData, history) => async (dispatch) => {
@@ -8,8 +10,22 @@ export const signin = (formData, history) => async (dispatch) => {
     const { data } = await api.signIn(formData);
 
     dispatch({ type: AUTH, data });
-    console.log(data.result.role)
+
+    if (data.token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`
+    } else {
+      delete axios.defaults.headers.common["Authorization"];
+    }
+    
     switch (data.result.role) {
+      case 'student':
+        history.push(`/${OPPORTUNITIES_PAGE}`);
+
+        const profile = await getProfile({ userID: data.result._id });
+        localStorage.setItem('student', profile.data.studentID)
+        
+        dispatch({ type: GET_PROFILE, payload: profile.data });
+        break;
       case 'supervisor':
         history.push(`/${STUDENTS_PAGE}/internship`);
         break;

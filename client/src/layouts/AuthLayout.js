@@ -15,7 +15,7 @@ const AuthLayout = ({ children }) => {
     console.log("This is a warning message!")
     return (
       <>
-        <Alert severity="warning">This is a warning message!</Alert>
+        {/* <Alert severity="warning">This is a warning message!</Alert> */}
         <Redirect to="/auth" />;
       </>
     )

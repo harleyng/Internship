@@ -9,7 +9,12 @@ import StudentOverall from '../components/student/StudentOverall'
 import StudentScore from '../components/student/StudentScore'
 import ExportContainer from '../pages/document/ExportContainer'
 import Documents from '../pages/document/staffHandle/Documents'
-import { STUDENTS_PAGE, DOCUMENTS_PAGE } from './constants/pages'
+import { STUDENTS_PAGE, DOCUMENTS_PAGE, OPPORTUNITIES_PAGE } from './constants/pages'
+import Opportunities from '../pages/opportunity/Opportunities'
+import OpportunityDetail from '../pages/opportunity/OpportunityDetail'
+import CreateOpportunity from '../pages/opportunity/CreateOpportunity'
+import UpdateOpportunity from '../pages/opportunity/UpdateOpportunity'
+
 
 const routes = [
   {
@@ -81,6 +86,31 @@ const routes = [
     component: Documents,
     protected: true
   },
+
+  // OPPORTUNITY
+  {
+    path: `/${OPPORTUNITIES_PAGE}`,
+    exact: true,
+    component: Opportunities,
+    protected: false
+  }, {
+    path: `/${OPPORTUNITIES_PAGE}/create`,
+    exact: true,
+    component: CreateOpportunity,
+    protected: false
+  }, {
+    path: `/${OPPORTUNITIES_PAGE}/:opportunityID`,
+    exact: true,
+    component: OpportunityDetail,
+    protected: false
+  }, { 
+    path: `/${OPPORTUNITIES_PAGE}/:opportunityID/update`,
+    exact: true,
+    component: UpdateOpportunity,
+    protected: false
+  },
+
+  
 ]
 
 export default routes;

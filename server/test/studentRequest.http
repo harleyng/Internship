@@ -1,0 +1,10 @@
+@APIconfig = http://localhost:5000
+
+# Staff
+@Token = SECRET eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN0YWZmQGdtYWlsLmNvbSIsImlkIjoiNjA5NTJlYzdiNDRhMTZiMTcwZmJhYWM0Iiwicm9sZSI6InN0YWZmIiwiaWF0IjoxNjIzNTc5MjI3fQ.3SA8atRklVNwft_9hmzIh377Z8cAY_R8-bOFiWMLeLM
+
+# Student
+# @Token = SECRET eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhhcmxleS5uZ3hAZ21haWwuY29tIiwiaWQiOiI2MDkwZmQ3NjBjYmZiYTA1YTk5ZWY4Y2EiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTYyMzU3OTI3M30.Xa7gqzB-c0oC6r5m6nrFkx0WE-tGfaDAteOwqdkt_xI
+
+GET {{APIconfig}}/student
+Authorization: {{Token}} 
