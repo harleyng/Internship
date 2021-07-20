@@ -9,6 +9,11 @@ const studentSchema = mongoose.Schema({
   academicYear: String,
   department  : String,
   phoneNo     : String,
+  internshipStatus: {
+    type: String,
+    enum : ['Unregistered','Registering', 'Documenting', 'Supervising', 'Evaluating', 'Finished'],
+    default: 'Unregistered'
+  },
   comment     : [String],
   supervisor  : {
     internal  : Boolean,

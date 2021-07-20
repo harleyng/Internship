@@ -5,14 +5,13 @@ import { authRole, authUser } from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.get('/', authUser, authRole(['staff', 'supervisor', 'council']), getStudents);
-router.get('/', getStudents);
-router.post('/', getSupervisorStudents)
+router.get('/', authUser, authRole(['staff', 'supervisor', 'council', 'lecturer']), getStudents);
+router.post('/', authUser, authRole(['supervisor']), getSupervisorStudents)
 router.get('/user/:userID', getStudentUser);
-router.post('/new', createStudent);
+router.post('/new', authUser, authRole(['student']), createStudent);
 
-router.post('/getProfile', getProfile);
-router.patch('/updateProfile', updateProfile);
+router.post('/getProfile', authUser, authRole(['staff', 'student']), getProfile);
+router.patch('/updateProfile', authUser, authRole(['staff', 'student', 'lecturer']), updateProfile);
 
 
 export default router;

@@ -14,8 +14,15 @@ export const getStudentUser = async (req, res) => {
 }
 
 export const getStudents = async (req, res) => {
+  const { status, department } = req.query;
+  let filter = {$and: []};
+
   try {
-    const students = await Student.find();
+    if (status) filter.$and.push({'internship.topicStatus': status});
+    if (department) filter.$and.push({'department': department});
+    if (!status && !department) filter = {}
+
+    const students = await Student.find(filter).sort({ 'internship.updatedAt': -1 });
 
     res.status(200).json(students);
   } catch (error) {
@@ -74,7 +81,7 @@ export const getProfile = async (req, res) => {
 }
 
 export const updateProfile = async (req, res) => {
-  const update = req.body;
+  const update = { ...req.body, internshipStatus: 'Registering' };
   const filter = { studentID: req.body.studentID };
   console.log(req.body)
   try {
@@ -82,15 +89,16 @@ export const updateProfile = async (req, res) => {
       new: true,
     });
 
+    // Mailing
     const evaluatedStudent = await Student.findOne(filter)
     const evaluatedUser = await User.findOne({_id: evaluatedStudent.userID})
     const receiver = evaluatedUser.email;
-    if (req.body.internship?.topicStatus && req.body.internship?.topicStatus !== 'Pending') {
+    if (req.body.internship?.topicStatus && req.body.internship?.topicStatus !== 'Pending' && req.userRole === 'lecturer') {
       const title = "Your topic has been reviewed"
       const context = {content: `You are ${req.body.internship.topicStatus}.`}
       sendEmail(receiver, title, context);
     }
-    if (req.body.comment) {
+    if (req.body.comment && req.userRole === 'staff') {
       const title = "There are some problem with your internship information"
       const context = {content: `${req.body.comment[req.body.comment.length - 1]}`}
       sendEmail(receiver, title, context);

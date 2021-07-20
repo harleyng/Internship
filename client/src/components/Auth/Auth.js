@@ -51,11 +51,11 @@ const Auth = () => {
             </Grid>
           </Grid>
           <Grid container spacing={2}>
-            <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-            <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
+            <Input name="email" label="Email Address" handleChange={handleChange} type="email" required/>
+            <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} required/>
             { isSignup && 
             <>
-              <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> 
+              <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" required/> 
               <Grid item xs={12}>
                 <FormControl component="fieldset" className={classes.RoleContainer}>
                   <FormLabel component="legend">Role</FormLabel>
@@ -66,11 +66,11 @@ const Auth = () => {
                     value={formData.role}
                     onChange={handleChange}
                   >
-                    <FormControlLabel value="student" control={<Radio />} label="Student" />
-                    <FormControlLabel value="staff" control={<Radio />} label="Staff" />
-                    <FormControlLabel value="lecturer" control={<Radio />} label="Lecturer" />
-                    <FormControlLabel value="council" control={<Radio />} label="Council" />
-                    <FormControlLabel value="supervisor" control={<Radio />} label="Supervisor" />
+                    <FormControlLabel value="student" control={<Radio required/>} label="Student" />
+                    <FormControlLabel value="staff" control={<Radio required/>} label="Staff" />
+                    <FormControlLabel value="lecturer" control={<Radio required/>} label="Lecturer" />
+                    <FormControlLabel value="council" control={<Radio required/>} label="Council" />
+                    <FormControlLabel value="supervisor" control={<Radio required/>} label="Supervisor" />
                   </RadioGroup>
                 </FormControl>
               </Grid>

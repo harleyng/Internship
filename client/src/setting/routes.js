@@ -1,5 +1,3 @@
-import Home from '../pages/Home'
-import TopicReview from '../components/lecturer/TopicReview'
 import Logbook from '../components/logbook/Logbook'
 import Council from '../components/student/evaluation/Council'
 import NewStudent from '../components/student/new/NewStudent'
@@ -7,14 +5,16 @@ import ProfileEditor from '../components/student/profile/ProfileEditor'
 import StudentInternship from '../components/student/StudentInternship'
 import StudentOverall from '../components/student/StudentOverall'
 import StudentScore from '../components/student/StudentScore'
+import Home from '../pages/Home'
+import TopicReview from '../pages/topic/TopicReview'
 import ExportContainer from '../pages/document/ExportContainer'
 import Documents from '../pages/document/staffHandle/Documents'
-import { STUDENTS_PAGE, DOCUMENTS_PAGE, OPPORTUNITIES_PAGE } from './constants/pages'
 import Opportunities from '../pages/opportunity/Opportunities'
 import OpportunityDetail from '../pages/opportunity/OpportunityDetail'
 import CreateOpportunity from '../pages/opportunity/CreateOpportunity'
 import UpdateOpportunity from '../pages/opportunity/UpdateOpportunity'
 
+import { STUDENTS_PAGE, DOCUMENTS_PAGE, OPPORTUNITIES_PAGE } from './constants/pages'
 
 const routes = [
   {
@@ -28,12 +28,6 @@ const routes = [
     path: `/${STUDENTS_PAGE}`,
     exact: true,
     component: StudentOverall,
-    protected: true
-  },
-  {
-    path: `/${STUDENTS_PAGE}/new`,
-    exact: true,
-    component: NewStudent,
     protected: true
   },
   {

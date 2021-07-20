@@ -38,9 +38,10 @@ const Opportunities = () => {
 		const grid = document.getElementsByClassName('masonry')[0],
 				rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap')),
 				rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-
-		const rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
-
+		
+		const content = item.querySelector('.masonry-content');
+		const rowSpan = Math.ceil((content.getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
+		
 		item.style.gridRowEnd = 'span '+ rowSpan;
 	}
 
@@ -63,7 +64,7 @@ const Opportunities = () => {
         setLoadingMore(false);
       })
 			.then(() => {
-				resizeAllMasonryItems()
+				resizeAllMasonryItems() 
 			})
       .catch(err => {
         console.log(err);

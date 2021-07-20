@@ -4,18 +4,9 @@ import { DataGrid, GridToolbar } from '@material-ui/data-grid';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateScore } from '../../../actions/score'
 
-import SupervisorEvaluationModal from './SupervisorEvaluationModal'
-import RightMenu from './RightMenu'
-
-const mouseInitialState = {
-  mouseX: null,
-  mouseY: null,
-};
-
 const ScoreDataGrid = () => {
   const dispatch = useDispatch()
   const [selectedCellParams, setSelectedCellParams] = useState(null);  
-  const [mousePosition, setMousePosition] = useState(mouseInitialState);
   const score = useSelector(state => state.studentScore)
   let rows = [];
 
@@ -46,17 +37,6 @@ const ScoreDataGrid = () => {
       })
     }
   }
-
-  // Right Menu
-  const openRightClickMenu = (event) => {
-    if (selectedCellParams) {
-      event.preventDefault();
-      setMousePosition({
-        mouseX: event.clientX - 2,
-        mouseY: event.clientY - 4,
-      });
-    }
-  };
   
   const handleCellClick = useCallback((params) => {
     setSelectedCellParams(params);
@@ -64,7 +44,7 @@ const ScoreDataGrid = () => {
 
   return (
     !rows.length ? <CircularProgress /> : (
-      <div style={{ height: '90vh', width: '100%', cursor: 'context-menu' }} onContextMenu={openRightClickMenu}>
+      <div style={{ height: '90vh', width: '100%'}}>
         <DataGrid 
           rows={rows} 
           columns={columns}
@@ -73,8 +53,7 @@ const ScoreDataGrid = () => {
           components={{
             Toolbar: GridToolbar,
           }}
-          />
-          <RightMenu  mousePosition={mousePosition} setMousePosition={setMousePosition} mouseInitialState={mouseInitialState} studentID={selectedCellParams?.row?.studentID} />
+        />
       </div>
     )
   )

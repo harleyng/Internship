@@ -18,6 +18,7 @@ const NewStudent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    localStorage.setItem('student', studentID)
     dispatch(createPlan(studentID));
     dispatch(createScore(studentID));
     dispatch(createDocumentModel(studentID));

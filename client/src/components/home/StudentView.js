@@ -5,7 +5,7 @@ import { OPPORTUNITIES_PAGE, STUDENTS_PAGE } from '../../setting/constants/pages
 import HomeButton from "./HomeButton";
 
 const StudentView = () => {
-  const studentID = JSON.parse(localStorage.getItem('student'));
+  const studentID = localStorage.getItem('student');
 
   const accessProfile = () => {
     return `/${STUDENTS_PAGE}/${studentID}`;

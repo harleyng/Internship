@@ -28,12 +28,7 @@ export const sendEmail = (receiver, subject, context) => {
     to     : receiver,
     subject: subject,
     template: 'index',
-    context: context,
-    // attachments: [{
-    //   filename: 'logo-blue.png',
-    //   path: process.cwd() + '/mailing/logo-blue.png',
-    //   cid: 'logo-blue'
-    // }]
+    context: context
   };
   // Step 3
   transporter

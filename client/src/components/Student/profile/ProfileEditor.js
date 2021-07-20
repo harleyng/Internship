@@ -174,7 +174,7 @@ const ProfileEditor = (props) => {
                 <Button variant="contained" className={`${classes.ProfileHandlerButton} ${editable ? `${classes.avoidClick}` : '' }`} endIcon={<Icon>delete</Icon>} onClick={clear}>
                   Clear
                 </Button>
-                <Button variant="contained" className={`${classes.ProfileHandlerButton} ${editable ? `${classes.avoidClick}` : '' }`} endIcon={<Icon>send</Icon>} onClick={handleSubmit}>
+                <Button variant="contained" className={`${classes.ProfileHandlerButton}`} endIcon={<Icon>send</Icon>} onClick={handleSubmit}>
                   Submit
                 </Button>
               </div>

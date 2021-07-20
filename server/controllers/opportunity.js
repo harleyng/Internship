@@ -18,7 +18,7 @@ export const getOpportunities = async (req, res) => {
 					return resp
 				} else if (pageNumber === totalPages) { // Last Page
 					return resp.slice(skip, totalItems)
-				} else {
+				} else { // Other page
 					return resp.slice(skip, skip + pageSize)
 				}
 			})

@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100vw',
     minWidth: `320px`,
     margin: 'auto',
-    textAlign: 'center',
     padding: theme.spacing(10),
     [theme.breakpoints.up('md')]: {
       padding: '60px 160px',

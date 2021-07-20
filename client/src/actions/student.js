@@ -1,20 +1,21 @@
 import { GET_PROFILE, UPDATE_PROFILE, CREATE_STUDENT, GET_STUDENT_LIST, GET_STUDENT_USER, GET_SUPERVISOR_STUDENT_LIST } from '../setting/constants/actionTypes';
 import * as api from '../api/student';
+import { OPPORTUNITIES_PAGE } from '../setting/constants/pages';
 
 export const createStudent = (formData, history) => async (dispatch) => {
   try {
     const { data } = await api.createStudent(formData);
 
     dispatch({ type: CREATE_STUDENT, payload: data });
-    history.push('/');
+    history.push(`/${OPPORTUNITIES_PAGE}`);
   } catch (error) {
     console.log(error);
   } 
 }
 
-export const getStudentList =  () => async (dispatch) => {
+export const getStudentList =  (filter = undefined, department = undefined) => async (dispatch) => {
   try {
-    const { data } = await api.getStudentList();
+    const { data } = await api.getStudentList(filter, department);
 
     dispatch({ type: GET_STUDENT_LIST, payload: data });
   } catch (error) {

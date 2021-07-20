@@ -6,6 +6,7 @@ import StudentCard from "./StudentCard";
 
 const StudentList = () => {
   const students = useSelector((state) => state.students);
+
   return (
     <Grid container spacing={3}>
       {students.map(student => (

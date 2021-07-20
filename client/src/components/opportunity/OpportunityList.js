@@ -14,9 +14,6 @@ const useStyles = makeStyles(() => ({
 		gridGap: '2em',
 		gridTemplateColumns: 'repeat( auto-fill, minmax( 20%, 30% ))', 
 		gridAutoRows: 0, 
-	},
-	tile: {
-
 	}
 }))
 

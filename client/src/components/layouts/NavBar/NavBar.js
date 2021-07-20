@@ -1,8 +1,7 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography, List, ListItem } from '@material-ui/core'
+import { AppBar, Toolbar, Typography, List } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import useStyles from './styles'
-import { useDispatch, useSelector } from 'react-redux'
 
 import User from './User/User'
 import logo from '../../../assets/img/logo-blue.png';
@@ -12,16 +11,18 @@ import { NavbarItem } from './NavbarItem'
 const NavBar = () => {
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'))
-  const profile = useSelector(state => state.studentProfile);
+  const studentID = localStorage.getItem('student')
+
+  console.log(studentID)
 
   const accessProfile = () => {
-    if (profile) {
-      return (`/${STUDENTS_PAGE}/${profile?.studentID}`)
+    if (studentID) {
+      return (`/${STUDENTS_PAGE}/${studentID}`)
     }
   }
   const accessLogbook = () => {
-    if (profile) {
-      return (`/${STUDENTS_PAGE}/${profile?.studentID}/logbook`)
+    if (studentID) {
+      return (`/${STUDENTS_PAGE}/${studentID}/logbook`)
     }
   }
 
@@ -35,25 +36,12 @@ const NavBar = () => {
             <NavbarItem title='Logbook' path={accessLogbook()} />
           </List>
         )
-      case 'lecturer':
-        return (
-          <List className={classes.navBarList}>
-            <NavbarItem title='Review Topic' path={`/${STUDENTS_PAGE}/topic`} />
-          </List>
-        )
       case 'staff':
         return (
           <List className={classes.navBarList}>
             <NavbarItem title='Internship Opportunities' path={`/${OPPORTUNITIES_PAGE}`} />
             <NavbarItem title='Student' path={`/${STUDENTS_PAGE}`} />
             <NavbarItem title='Document' path={`/${DOCUMENTS_PAGE}`} />
-          </List>
-        )
-      case 'council':
-        return (
-          <List className={classes.navBarList}>
-            <NavbarItem title='Student' path={`/${STUDENTS_PAGE}/internship`} />
-            <NavbarItem title='Evaluation' path={`/${STUDENTS_PAGE}/score`} />
           </List>
         )
       default:

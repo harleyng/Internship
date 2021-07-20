@@ -2,32 +2,33 @@ import React from 'react'
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { yellow, red, green } from '../../../../setting/constants/colors'
+import { yellow, red, green } from '../../setting/constants/colors'
 
 const useStyles = makeStyles((theme) => ({
-  status: {
-    padding: '5px 15px',
-    border: '2px solid',
+  general: {
+    padding: '0 10px',
+    border: '1px solid',
     borderRadius: '20px',
   },
-  pendingStatus: {
+  pending: {
     color: yellow,
     borderColor: yellow,
   },
-  approvedStatus: {
+  approved: {
     color: green,
     borderColor: green,
   }, 
-  refusedStatus: {
+  refused: {
     color: red,
     borderColor: red,
   }
 }))
 
-const TopicStatus = ({ className, value }) => {
+const TopicStatus = ({ status, value }) => {
   const classes = useStyles();
+
   return (
-    <Typography className={`${classes.status} ${className}`}>
+    <Typography className={`${classes.general} ${classes.[`${status}`]}`}>
       {value}
     </Typography> 
   )

@@ -1,5 +1,5 @@
 import renderCellExpand from '../renderCellExpand'
-import TopicStatus from '../../../../pages/student/StudentList/studentDataGrid/TopicStatus'
+import TopicStatus from '../../../internship/TopicStatus'
 import moment from 'moment';
 
 export const defaultColumns = [
@@ -34,17 +34,17 @@ export const defaultColumns = [
     renderCell: (params) => { 
       if (params.value === 'Pending') {
         return (
-          <TopicStatus className={'${classes.pendingStatus}'} value={params.value} />
+          <TopicStatus className={'${classes.pending}'} value={params.value} />
         )
       }
       if (params.value === 'Approved') {
         return (
-          <TopicStatus className={'${classes.approvedStatus}'} value={params.value} />
+          <TopicStatus className={'${classes.approved}'} value={params.value} />
         )
       }
       if (params.value === 'Refused') {
         return (
-          <TopicStatus className={'${classes.refusedStatus}'} value={params.value} />
+          <TopicStatus className={'${classes.refused}'} value={params.value} />
         )
       }
     },

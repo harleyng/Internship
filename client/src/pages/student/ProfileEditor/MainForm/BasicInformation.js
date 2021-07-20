@@ -39,7 +39,7 @@ const BasicInformation = ({ handleChange, handleDateChange, handleClick, formDat
       
         {/* Line Break */}
 
-        <Input name="studentID" value={formData?.studentID} label="Student ID" handleChange={handleChange} width={2} type="text" required />
+        <Input name="studentID" value={formData?.studentID} label="Student ID" handleChange={handleChange} width={2} type="text" disabled />
 
         <Input name="academicYear"  value={formData?.academicYear} label="Academic Year" handleChange={handleChange} width={3} type="text" />
 

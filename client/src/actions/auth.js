@@ -19,12 +19,12 @@ export const signin = (formData, history) => async (dispatch) => {
     
     switch (data.result.role) {
       case 'student':
-        history.push(`/${OPPORTUNITIES_PAGE}`);
-
         const profile = await getProfile({ userID: data.result._id });
         localStorage.setItem('student', profile.data.studentID)
         
         dispatch({ type: GET_PROFILE, payload: profile.data });
+
+        history.push(`/${OPPORTUNITIES_PAGE}`);
         break;
       case 'supervisor':
         history.push(`/${STUDENTS_PAGE}/internship`);
@@ -42,13 +42,23 @@ export const signup = (formData, history) => async (dispatch) => {
     const { data } = await api.signUp(formData)
 
     dispatch({ type: AUTH, data });
-    
-    const user = JSON.parse(localStorage.getItem('profile'))
-    console.log(user)
-    if (user.result.role === 'student') {
-      history.push('/students/new')
+
+    if (data.token) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`
     } else {
-      history.push('/');
+      delete axios.defaults.headers.common["Authorization"];
+    }
+    
+    switch (data.result.role) {
+      case 'student':
+        history.push('/students/new')
+
+        break;
+      case 'supervisor':
+        history.push(`/${STUDENTS_PAGE}/internship`);
+        break;
+      default:
+        history.push('/');
     }
   } catch (error) {
     console.log(error);

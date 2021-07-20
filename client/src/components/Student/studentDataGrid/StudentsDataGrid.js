@@ -6,19 +6,12 @@ import moment from 'moment';
 
 import { defaultColumns } from './constants/dataProcessing';
 import CustomToolbar from './CustomToolBar'
-import RightMenu from './RightMenu';
-
-const mouseInitialState = {
-  mouseX: null,
-  mouseY: null,
-};
 
 const StudentsDataGrid = ({ hide, role, staffToolBar }) => {
   const students = useSelector(state => state.students);
   const [selectedRow, setSelectedRow] = useState([]);
   const [rows, setRows] = useState([]);
   const [columns, setColumns] = useState(defaultColumns);
-  const [mousePosition, setMousePosition] = useState(mouseInitialState);
   const [selectedCellParams, setSelectedCellParams] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -80,15 +73,6 @@ const StudentsDataGrid = ({ hide, role, staffToolBar }) => {
     })
     setRows(newRows)
   }
-
-  // Right Menu
-  const openRightClickMenu = (event) => {
-    event.preventDefault();
-    setMousePosition({
-      mouseX: event.clientX - 2,
-      mouseY: event.clientY - 4,
-    });
-  };
   
   // Staff comment
   const handleCellClick = useCallback((params) => {
@@ -117,7 +101,7 @@ const StudentsDataGrid = ({ hide, role, staffToolBar }) => {
   }, []);
   return (
     !students.length ? <CircularProgress /> : (
-      <div style={{ height: '90vh', width: '100%', cursor: 'context-menu' }} onContextMenu={openRightClickMenu}>
+      <div style={{ height: '90vh', width: '100%', cursor: 'context-menu' }}>
         <DataGrid 
           rows={rows} 
           columns={columns} 
@@ -141,7 +125,6 @@ const StudentsDataGrid = ({ hide, role, staffToolBar }) => {
           onSelectionModelChange={(e) => {
             setSelectedRow(e.selectionModel)
           }}/>
-        <RightMenu selectedRow={selectedRow} rows={rows} role={role} mousePosition={mousePosition} setMousePosition={setMousePosition} mouseInitialState={mouseInitialState}/>
       </div>
     )
   )
